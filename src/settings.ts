@@ -1,7 +1,6 @@
 import { App, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 
-// declare がよくわからない
 declare class CardViewModePlugin extends Plugin {
   settings: CardViewModeSettings;
   disable(): void;
@@ -80,7 +79,6 @@ export class CardViewModeCommands {
   }
 
   addCommands(): void {
-    // add the toggle on/off command
     this.plugin.addCommand({
       id: 'toggle-card-view-mode',
       name: 'Toggle Card View',
@@ -89,7 +87,6 @@ export class CardViewModeCommands {
         this.plugin.settings.disabled = !this.plugin.settings.disabled;
         this.plugin.saveData(this.plugin.settings);
 
-        // disable or enable as necessary
         this.plugin.settings.disabled ? this.plugin.disable() : this.plugin.enable();
       }
     });
