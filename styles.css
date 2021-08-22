@@ -2,8 +2,12 @@
 /* ----------------------------------------------  */
 /* Custom CSS Snippet "Card View & Attention Pane" */
 /* ----------------------------------------------  */
-/* v0.4  
+/* 
+## v0.4.0
 - fixed sidebar tab background color
+
+## v0.4.1
+- modidified background-color to make outline & link panes or etc. clearly visible
 */
 /* ----------------------------------------------  */
 /* for debugging                                   */
@@ -15,8 +19,6 @@
   --cardview-side-padding: 0px;
   --cardview-preview-mode-minimum-size: 15px;
   --cardview-card-boarder-radius: 8px;
-  --cardview-embedded-title-font-editor: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  --cardview-embedded-title-font-preview: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   --cardview-embedded-title-font-size: 27px;
   --cardview-embedded-title-border-right-width: 6px;
   --cardview-embedded-title-boarder-radius: 5px;
@@ -33,22 +35,12 @@
 }
 
 .theme-dark {
-  --cardview-card-color: #000000;
-  --cardview-card-color-active: #474747;
-  --cardview-card-color-non-active: #252525;
-  --cardview-background-color-active: #919191;
-  --cardview-background-color-non-active: #050505;
   --cardview-shadow-active: 0px 0px 10px rgba(0, 0, 0, 0.5);
   --cardview-shadow-non-active: 0px 0px 0px rgba(0, 0, 0, 0.7);
   --header-color-background: #000000;
 }
 
 .theme-light {
-  --cardview-card-color: #e6e6e6;
-  --cardview-card-color-active: #ffffff;
-  --cardview-card-color-non-active: #e6e6e6;
-  --cardview-background-color-active: #ffffff;
-  --cardview-background-color-non-active: #dfdfdf;
   --cardview-shadow-active: 0px 0px 10px rgba(128, 128, 128, 0.3);
   --cardview-shadow-non-active: 0px 0px 15px rgba(128, 128, 128, 0.25);
   --header-color-background: #f2f2f2;
@@ -101,7 +93,7 @@ body.plugin-card-view-mode .CodeMirror-sizer .CodeMirror-lines > div[role=presen
 body.plugin-card-view-mode .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
   /* sepfify how to color padding */
   background-clip: border-box;
-  background-color: var(--cardview-background-color-active);
+  background-color: var(--cardview-background-color-default);
   box-shadow: var(--cardview-shadow);
   border-radius: var(--cardview-card-boarder-radius);
   /* modify space between card and embeded-note-title's header */
@@ -145,10 +137,10 @@ body.plugin-card-view-mode ::-webkit-scrollbar {
   display: none !important;
 }
 body.plugin-card-view-mode .workspace-leaf.mod-active .view-content {
-  background-color: var(--cardview-background-color-active);
+  background-color: var(--cardview-background-color-default);
 }
 body.plugin-card-view-mode .workspace-split:not(.mod-right-split) .workspace-leaf:not(.mod-active) .workspace-leaf-content .view-content {
-  background-color: var(--cardview-background-color-active);
+  background-color: var(--cardview-background-color-default);
 }
 body.plugin-card-view-mode .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines > div[role=presentation],
 body.plugin-card-view-mode .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
@@ -192,7 +184,7 @@ body.plugin-card-view-mode .workspace-leaf:not(.mod-active) .view-content .markd
   background-color: var(--cardview-card-color-non-active) !important;
 }
 body.plugin-card-view-mode .popover.hover-popover {
-  background-color: var(--cardview-background-color-active);
+  background-color: var(--cardview-background-color-default);
 }
 body.plugin-card-view-mode .popover.hover-popover .markdown-embed .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
   background-color: var(--cardview-card-color-non-active);
@@ -222,7 +214,7 @@ body.plugin-card-view-mode-cardtitle.embedded-note-titles .CodeMirror-scroll > h
 }
 body.plugin-card-view-mode-cardtitle.embedded-note-titles h1[id*=edit] {
   color: var(--cardview-debug-color-embedded-note-title-edit);
-  font-family: var(--cardview-embedded-title-font-editor-edit);
+  font-family: var(--default-font);
   font-size: var(--cardview-embedded-title-font-size) !important;
   font-weight: bold;
   /* margin-bottom: calc(var(--cardview-embedded-title-space-btw-card) - 40px) !important; */
@@ -236,7 +228,7 @@ body.plugin-card-view-mode-cardtitle.embedded-note-titles h1[id*=edit] {
 }
 body.plugin-card-view-mode-cardtitle.embedded-note-titles .markdown-preview-view.is-readable-line-width > h1 {
   color: var(--cardview-debug-color-embedded-note-title-preview);
-  font-family: var(--cardview-embedded-title-font-preview);
+  font-family: var(--default-font);
   font-size: var(--cardview-embedded-title-font-size) !important;
   font-weight: bold !important;
   margin-bottom: calc(var(--cardview-embedded-title-space-btw-card) + 11px) !important;

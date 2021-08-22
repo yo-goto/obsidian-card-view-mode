@@ -1,13 +1,16 @@
 import './styles.scss'
 import { Plugin } from 'obsidian';
-import { CardViewModeSettings, CardViewModeSettingTab, CardViewModeCommands } from './settings';
+import { 
+  CardViewModeSettings, 
+  CardViewModeSettingTab, 
+  CardViewModeCommands 
+} from './settings';
 
 
 export default class CardViewModePlugin extends Plugin {
   settings: CardViewModeSettings;
 
   async onload() {
-      // load settings
       this.settings = Object.assign(new CardViewModeSettings(), await this.loadData());
       if (!this.settings.disabled) this.enable();
       this.addSettingTab(new CardViewModeSettingTab(this.app, this));
@@ -41,23 +44,56 @@ export default class CardViewModePlugin extends Plugin {
   }
 
   removeStyle = () => {
-    const el = document.getElementById('plugin-card-view-mode');
-    if (el) el.remove();
+    // const el = document.getElementById('plugin-card-view-mode');
+    // if (el) el.remove();
     document.body.classList.remove('plugin-card-view-mode');
     document.body.classList.remove('plugin-card-view-mode-cardtitle');
+
+    // document.body.removeClass('plugin-card-view-mode', 'plugin-card-view-mode-cardtitle');
   }
 
   addStyle = () => {
+    // const css = document.createElement('style');
+    // css.id = 'plugin-card-view-mode-cardtitle';
+    // document.getElementsByTagName("head")[0].appendChild(css);
+
+    // document.body.classList.add('plugin-card-view-mode');
+    // this.updateStyle();
+
     const css = document.createElement('style');
-    css.id = 'plugin-card-view-mode-cardtitle';
+    css.id = 'plugin-card-view-mode';
     document.getElementsByTagName("head")[0].appendChild(css);
 
     document.body.classList.add('plugin-card-view-mode');
+    document.body.classList.add('plugin-card-view-mode-cardtitle');
     this.updateStyle();
   }
   
   updateStyle = () => {
+    // 1. remove style before changing
+    // this.removeStyle();
+    // これやるとスタイル更新されない
+
+    // 2-a. update boolean settings
     document.body.classList.toggle('plugin-card-view-mode-cardtitle', this.settings.cardTitle);
+
+    // 2-b. updaate custom css properties
+    const el = document.getElementById('plugin-card-view-mode');
+    if (!el) throw "plugin-card-view-mode element not found!";
+    else {
+        el.innerText = `
+        body.plugin-card-view-mode.theme-light{
+          --cardview-card-color-active: rgb(${this.settings.colorActiveCardLight});
+          --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardLight});
+          --cardview-background-color-default: rgb(${this.settings.colorBackGroundLight});
+        }
+        body.plugin-card-view-mode.theme-dark{
+          --cardview-card-color-active: rgb(${this.settings.colorActiveCardDark});
+          --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardDark});
+          --cardview-background-color-default: rgb(${this.settings.colorBackGroundDark});
+        }
+        `;
+    }
   }
 
   handleResize = () => {
@@ -87,6 +123,17 @@ export default class CardViewModePlugin extends Plugin {
     }
 
   }
-}
 
+  // fixifr = () => {  
+  //   //　iframeタグのElementリストをifrObjsオブジェクトに取り込む  
+  //   var ifrObjs=document.getElementsByTagName("iframe");  
+  //  // iframeタグが複数個ある場合、各iframeタグについて表示されるページの高さにiframeの高さを調整する 
+  //   for(let i=0; i<ifrObjs.length;i++){
+  //        var ifrObj = ifrObjs.item(i);
+  //        ifrObj.height = `ifrObj.contentDocument.body.scrollHeight`;
+  //    }
+  // }
+
+
+}
 
