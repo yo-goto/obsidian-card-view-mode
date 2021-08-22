@@ -12,7 +12,7 @@ The vertical size of each note (a.k.a card) can be expanded or reduced based on 
 
 I highly recommend you to use this snippet with the Sliding Pane plugin. I made this to be compatible with that plugin and the Embedded Note Titles plugin.
 
-# Feature2. Attention Pane
+## Feature2. Attention Pane
 
 Another feature is “Attention Pane”. An active pane card is highlighted and the others are grayed out. This enables you to find an active pane easily and focus on the note. Literally, you can pay attention to the specific pane among many notes!!
 
