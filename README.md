@@ -1,45 +1,41 @@
-## Obsidian Sample Plugin
+# Obsidian Card View Mode
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+![Screenshot](screenshot.gif)
 
-This project uses Typescript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in Typescript Definition format, which contains TSDoc comments describing what it does.
+## Feature1. Card view 
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+This feature is inspired by Scrapbox(web-based wiki tool) & Zettelkasten method(slipbox) by Niklas Luhmann.
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Changes the default font color to red using `styles.css`.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+I found all of the notes are not in the same stage while developing. We need some ways to distinguish them. The card view feature is one way to weigh notes and express them.
 
+The vertical size of each note (a.k.a card) can be expanded or reduced based on the amount of content on them. At a glance, you can easily find how mature your note is at the early stage of note-making or note-developing.
 
-### Releasing new releases
+I highly recommend you to use this snippet with the Sliding Pane plugin. I made this to be compatible with that plugin and the Embedded Note Titles plugin.
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments.
-- Publish the release.
+# Feature2. Attention Pane
 
-### Adding your plugin to the community plugin list
+Another feature is “Attention Pane”. An active pane card is highlighted and the others are grayed out. This enables you to find an active pane easily and focus on the note. Literally, you can pay attention to the specific pane among many notes!!
 
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## Other Features
 
-### How to use
+Card colors and background color are configurable in the settings tab.
 
-- Clone this repo.
+# Development
+
+Special thanks to these plugins! I used these plugins as a reference for developping of my first pubilc plugin. The basic sturucture is mainly based on Sliding Pane. I refered other plugins to build the color configuration system.
+
+- [Sliding Panes (Andy Matuschak Mode) Obsidian Plugin](https://github.com/deathau/sliding-panes-obsidian) by deathau
+- [Obsidian Admonition](https://github.com/valentine195/obsidian-admonition) by valentine195
+- [Minimal Theme](https://github.com/kepano/obsidian-minimal-settings) by kepano
+- [Obsidian Embedded Code Title Plugin](https://github.com/tadashi-aikawa/obsidian-embedded-code-title) by tadashi-aikawa
+
+## How to build manually
+
+- Clone this repo
 - `npm i` or `yarn` to install dependencies
-- `npm run dev` to start compilation in watch mode.
+- `npm run dev` to compile
+- Copy `manifiest.json`, `main.js` and `styles.css` to a subfolder of your plugins folder
+- Reload obsidian to see changes
 
-### Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-### API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+## Original CSS
+[Gist Link](https://gist.github.com/yo-goto/742906c6463310e3f4e18c745dede016)

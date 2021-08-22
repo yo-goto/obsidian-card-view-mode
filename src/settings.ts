@@ -111,6 +111,28 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         }
     );
 
+    new Setting(containerEl)
+      .setName("Active Card Color in Light Mode")
+      .setDesc("Specify active card color in light mode")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorActiveCardLight)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorActiveCardLight);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+
+                if (!color) return;
+                this.plugin.settings.colorActiveCardLight = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.settings.colorNonActiveCardLight = `${color.r - this.plugin.settings.colorDiffBetweenActive}, ${color.g - this.plugin.settings.colorDiffBetweenActive}, ${color.b - this.plugin.settings.colorDiffBetweenActive}`;                
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );    
 
     new Setting(containerEl)
       .setName("Active Card Color in Dark Mode")
@@ -135,28 +157,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         }
     );
 
-    new Setting(containerEl)
-      .setName("Active Card Color in Light Mode")
-      .setDesc("Specify active card color in light mode")
-      .controlEl.createEl(
-        "input",
-        {
-            type: "color",
-            value: rgbToHex(this.plugin.settings.colorActiveCardLight)
-        },
-        (el) => {
-            el.value = rgbToHex(this.plugin.settings.colorActiveCardLight);
-            el.oninput = ({ target }) => {
-                let color = hexToRgb((target as HTMLInputElement).value);
-
-                if (!color) return;
-                this.plugin.settings.colorActiveCardLight = `${color.r}, ${color.g}, ${color.b}`;
-                this.plugin.settings.colorNonActiveCardLight = `${color.r - this.plugin.settings.colorDiffBetweenActive}, ${color.g - this.plugin.settings.colorDiffBetweenActive}, ${color.b - this.plugin.settings.colorDiffBetweenActive}`;                
-                this.plugin.saveData(this.plugin.settings)
-                this.plugin.refresh();
-            };
-        }
-    );    
 
     // SLIDER
     // new Setting(containerEl)
