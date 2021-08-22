@@ -1,8 +1,12 @@
 /* ----------------------------------------------  */
 /* Custom CSS Snippet "Card View & Attention Pane" */
 /* ----------------------------------------------  */
-/* v0.4  
+/* 
+## v0.4.0
 - fixed sidebar tab background color
+
+## v0.4.1
+- modidified background-color to make outline & link panes or etc. clearly visible
 */
 
 // variables
@@ -27,8 +31,7 @@ body {
     --cardview-preview-mode-minimum-size: 15px;
     --cardview-card-boarder-radius: 8px;
 
-    --cardview-embedded-title-font-editor: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    --cardview-embedded-title-font-preview: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    // disable font matching → changed them to '--default-font'
     --cardview-embedded-title-font-size: 27px;
     --cardview-embedded-title-border-right-width: 6px;
     --cardview-embedded-title-boarder-radius: 5px;
@@ -48,12 +51,17 @@ body {
 }
 
 .theme-dark {
-    --cardview-card-color: #000000;
-    --cardview-card-color-active: #474747;
-    --cardview-card-color-non-active: #252525;
+    // --cardview-card-color: rgb(232, 74, 74); 
 
-    --cardview-background-color-active: #919191;
-    --cardview-background-color-non-active: #050505;
+    // --cardview-card-color-active: rgb(71, 71, 71);
+    // --cardview-card-color-non-active: rgb(37, 37, 37);
+
+    // reverse color
+    // --cardview-card-color-active: #252525;
+    // --cardview-card-color-non-active: #474747;
+
+    // --cardview-background-color-default: #702c2c;
+    // --cardview-background-color-default: rgb(94, 94, 94);
     --cardview-shadow-active: 0px 0px 10px rgba(0, 0, 0, 0.5);
     --cardview-shadow-non-active: 0px 0px 0px rgba(0, 0, 0, 0.7);
 
@@ -61,20 +69,18 @@ body {
 }
 
 .theme-light {
-    --cardview-card-color: #e6e6e6;
-    --cardview-card-color-active: #ffffff;
-    --cardview-card-color-non-active: #e6e6e6;
+    // --cardview-card-color: #e6e6e6;
 
-    --cardview-background-color-active: #ffffff;
-    --cardview-background-color-non-active: #dfdfdf;
+    // --cardview-card-color-active: rgb(255, 255, 255);
+    // --cardview-card-color-non-active: rgb(230, 230, 230);
+
+    // --cardview-background-color-default: rgb(255, 255, 255);
     --cardview-shadow-active: 0px 0px 10px rgba(128, 128, 128, 0.3);
     --cardview-shadow-non-active: 0px 0px 15px rgba(128, 128, 128, 0.25);
 
     --header-color-background: #f2f2f2;
+
 }
-
-
-$plugin: true;
 
 
 body.plugin-card-view-mode {
@@ -86,7 +92,7 @@ body.plugin-card-view-mode {
     .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         /* sepfify how to color padding */
         background-clip: border-box;
-        background-color: var(--cardview-background-color-active);
+        background-color: var(--cardview-background-color-default);
         box-shadow: var(--cardview-shadow);
         border-radius: var(--cardview-card-boarder-radius);
     
@@ -170,13 +176,13 @@ body.plugin-card-view-mode {
     /* change color of active pane */
     /* background color of active pane */
     .workspace-leaf.mod-active .view-content {
-        background-color: var(--cardview-background-color-active);
+        background-color: var(--cardview-background-color-default);
     }
     
     /* background color of non-active pane */
     /* workspace tabs have data-type properties, it's necessary to deny them */
     .workspace-split:not(.mod-right-split) .workspace-leaf:not(.mod-active) .workspace-leaf-content .view-content {
-        background-color: var(--cardview-background-color-active);
+        background-color: var(--cardview-background-color-default);
     }
     
     /* active pane card color and shadow */
@@ -246,7 +252,7 @@ body.plugin-card-view-mode {
     /* popover modification                            */
     /* ----------------------------------------------  */
     .popover.hover-popover {
-        background-color: var(--cardview-background-color-active);
+        background-color: var(--cardview-background-color-default);
     
         .markdown-embed .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
             background-color: var(--cardview-card-color-non-active);
@@ -292,7 +298,7 @@ body.plugin-card-view-mode-cardtitle {
         h1[id*="edit"] {
             color: var(--cardview-debug-color-embedded-note-title-edit);
     
-            font-family: var(--cardview-embedded-title-font-editor-edit);
+            font-family: var(--default-font);
             font-size: var(--cardview-embedded-title-font-size) !important;
             font-weight: bold;
     
@@ -314,7 +320,7 @@ body.plugin-card-view-mode-cardtitle {
         .markdown-preview-view.is-readable-line-width>h1 {
             color: var(--cardview-debug-color-embedded-note-title-preview);
     
-            font-family: var(--cardview-embedded-title-font-preview);
+            font-family: var(--default-font);
             font-size: var(--cardview-embedded-title-font-size) !important;
             font-weight: bold !important;
     
