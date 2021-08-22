@@ -7,6 +7,7 @@
 
 ## v0.4.1
 - modidified background-color to make outline & link panes or etc. clearly visible
+- main colors can be changed in the setting tab
 */
 
 // variables
@@ -51,17 +52,10 @@ body {
 }
 
 .theme-dark {
-    // --cardview-card-color: rgb(232, 74, 74); 
-
     // --cardview-card-color-active: rgb(71, 71, 71);
     // --cardview-card-color-non-active: rgb(37, 37, 37);
-
-    // reverse color
-    // --cardview-card-color-active: #252525;
-    // --cardview-card-color-non-active: #474747;
-
-    // --cardview-background-color-default: #702c2c;
     // --cardview-background-color-default: rgb(94, 94, 94);
+
     --cardview-shadow-active: 0px 0px 10px rgba(0, 0, 0, 0.5);
     --cardview-shadow-non-active: 0px 0px 0px rgba(0, 0, 0, 0.7);
 
@@ -69,17 +63,15 @@ body {
 }
 
 .theme-light {
-    // --cardview-card-color: #e6e6e6;
-
+    // these colors can be changed in the setting tab
     // --cardview-card-color-active: rgb(255, 255, 255);
     // --cardview-card-color-non-active: rgb(230, 230, 230);
-
     // --cardview-background-color-default: rgb(255, 255, 255);
+
     --cardview-shadow-active: 0px 0px 10px rgba(128, 128, 128, 0.3);
     --cardview-shadow-non-active: 0px 0px 15px rgba(128, 128, 128, 0.25);
 
     --header-color-background: #f2f2f2;
-
 }
 
 

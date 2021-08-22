@@ -11,7 +11,6 @@ export default class CardViewModePlugin extends Plugin {
   settings: CardViewModeSettings;
 
   async onload() {
-      // load settings
       this.settings = Object.assign(new CardViewModeSettings(), await this.loadData());
       if (!this.settings.disabled) this.enable();
       this.addSettingTab(new CardViewModeSettingTab(this.app, this));
@@ -63,10 +62,8 @@ export default class CardViewModePlugin extends Plugin {
 
     const css = document.createElement('style');
     css.id = 'plugin-card-view-mode';
-    // css.type = 'text/css';
     document.getElementsByTagName("head")[0].appendChild(css);
 
-    // add main class
     document.body.classList.add('plugin-card-view-mode');
     document.body.classList.add('plugin-card-view-mode-cardtitle');
     this.updateStyle();

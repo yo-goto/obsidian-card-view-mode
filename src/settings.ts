@@ -3,7 +3,6 @@ import {
   Plugin, 
   PluginSettingTab, 
   Setting, 
-  stringifyYaml
 } from 'obsidian';
 
 
@@ -17,13 +16,6 @@ declare class CardViewModePlugin extends Plugin {
 export class CardViewModeSettings {
   disabled: boolean = false;
   cardTitle: boolean = false;
-  color: string = "#7d7d7d";
-  // colorBackGroundLight: string = "#ffffff";
-  // colorBackGroundDark: string = "#5e5e5e";
-  // colorActiveCardLight: string = "#ffffff";
-  // colorActiveCardDark: string = "#474747";
-  // colorNonActiveCardDark: String = "#474747";
-  // colorNonActiveCardLight: String = "#ffffff";
   colorBackGroundLight: string = "rgb(255, 255, 255)";
   colorBackGroundDark: string = "rgb(94, 94, 94)";
   colorActiveCardLight: string = "rgb(255, 255, 255)";
@@ -31,7 +23,6 @@ export class CardViewModeSettings {
   colorNonActiveCardDark: string = "rgb(71, 71, 71)";
   colorNonActiveCardLight: string = "rgb(255, 255, 255)";
   colorDiffBetweenActive: number = 20;
-  // reverseColor: boolean = true;
 }
 
 export class CardViewModeSettingTab extends PluginSettingTab {
@@ -167,6 +158,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         }
     );    
 
+    // SLIDER
     // new Setting(containerEl)
     //   .setName('Diff Between Active & NonActive Cards')
     //   .setDesc('Spcifiy Color difference between active & non active cards. Set 0 to diable "Attention pane"')
@@ -237,8 +229,7 @@ export class CardViewModeCommands {
         this.plugin.settings.disabled ? this.plugin.disable() : this.plugin.enable();
       }
     });
-    
-    // this.addToggleSettingCommand('toggle-card-color-reverse', 'Toggle Card Colords', 'reverseColor');
+
     this.addToggleSettingCommand('toggle-card-title', 'Toggle Card Title', 'cardTitle');
   }
 }
