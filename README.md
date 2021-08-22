@@ -1,6 +1,6 @@
 # Obsidian Card View Mode
 
-![Screenshot](screenshot.gif)
+![Screenshot](/resource/screenshot.gif)
 
 ## Feature1. Card view 
 
@@ -19,6 +19,8 @@ Another feature is “Attention Pane”. An active pane card is highlighted and 
 ## Other Features
 
 Card colors and background color are configurable in the settings tab.
+
+![setting tab](resource/screenshot.png)
 
 # Development
 
