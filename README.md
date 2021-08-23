@@ -2,7 +2,7 @@
 
 ![Screenshot](/resource/screenshot.gif)
 
-## Feature.1 Card view 
+## Feature.1 Card view
 
 This plugin is inspired by Scrapbox(web-based wiki tool) & Zettelkasten method(slipbox) by Niklas Luhmann.
 
