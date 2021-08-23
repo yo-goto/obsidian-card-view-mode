@@ -2,7 +2,7 @@
 
 ![Screenshot](/resource/screenshot.gif)
 
-## Feature1. Card view 
+## Feature.1 Card view 
 
 This plugin is inspired by Scrapbox(web-based wiki tool) & Zettelkasten method(slipbox) by Niklas Luhmann.
 
@@ -12,7 +12,7 @@ The vertical size of each note (a.k.a card) can be extended or reduced based on 
 
 I highly recommend you to use this plugin with the Sliding Pane plugin. I made this to be compatible with that and the Embedded Note Titles plugin.
 
-## Feature2. Attention Pane
+## Feature.2 Attention Pane
 
 Another feature is “Attention Pane”. An active pane card is highlighted and the others are grayed out. This enables you to find an active pane easily and focus on the note. You can pay attention to the specific pane among many notes!!
 
@@ -23,6 +23,8 @@ Active and non-active cards are rendered with different RGB color values. You ca
 Card colors and background color are configurable in the settings tab. 
 
 ![setting tab](resource/screenshot.png)
+
+You can globally turn on/off this plugin with a command at any time. 
 
 # Development
 
