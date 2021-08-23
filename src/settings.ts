@@ -158,7 +158,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     );
 
 
-    // SLIDER
+    // SLIDER setting
     // new Setting(containerEl)
     //   .setName('Diff Between Active & NonActive Cards')
     //   .setDesc('Spcifiy Color difference between active & non active cards. Set 0 to diable "Attention pane"')

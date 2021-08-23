@@ -107,7 +107,6 @@ export default class CardViewModePlugin extends Plugin {
     const paneLeafWidth = <NodeListOf<HTMLElement>>document.querySelectorAll('.CodeMirror-sizer .CodeMirror-lines>div[role="presentation"]');
     
 
-    // コンストラクタとコールバック
     const resizeObserver = new ResizeObserver(entries => {
       
       for(let i = 0; i < entries.length; i++) {
@@ -123,16 +122,6 @@ export default class CardViewModePlugin extends Plugin {
     }
 
   }
-
-  // fixifr = () => {  
-  //   //　iframeタグのElementリストをifrObjsオブジェクトに取り込む  
-  //   var ifrObjs=document.getElementsByTagName("iframe");  
-  //  // iframeタグが複数個ある場合、各iframeタグについて表示されるページの高さにiframeの高さを調整する 
-  //   for(let i=0; i<ifrObjs.length;i++){
-  //        var ifrObj = ifrObjs.item(i);
-  //        ifrObj.height = `ifrObj.contentDocument.body.scrollHeight`;
-  //    }
-  // }
 
 
 }
