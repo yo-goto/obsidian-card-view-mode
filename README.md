@@ -4,32 +4,34 @@
 
 ## Feature1. Card view 
 
-This feature is inspired by Scrapbox(web-based wiki tool) & Zettelkasten method(slipbox) by Niklas Luhmann.
+This plugin is inspired by Scrapbox(web-based wiki tool) & Zettelkasten method(slipbox) by Niklas Luhmann.
 
-I found all of the notes are not in the same stage while developing. We need some ways to distinguish them. The card view feature is one way to weigh notes and express them.
+I found all of the notes are not in the same stage while developing. We need some ways to distinguish the stages. The card view feature is one way to weigh notes and express them.
 
-The vertical size of each note (a.k.a card) can be expanded or reduced based on the amount of content on them. At a glance, you can easily find how mature your note is at the early stage of note-making or note-developing.
+The vertical size of each note (a.k.a card) can be extended or reduced based on the amount of content on them. At a glance, you can easily find how mature your note is at the early stage of note-making or note-developing.
 
-I highly recommend you to use this snippet with the Sliding Pane plugin. I made this to be compatible with that plugin and the Embedded Note Titles plugin.
+I highly recommend you to use this plugin with the Sliding Pane plugin. I made this to be compatible with that and the Embedded Note Titles plugin.
 
 ## Feature2. Attention Pane
 
-Another feature is “Attention Pane”. An active pane card is highlighted and the others are grayed out. This enables you to find an active pane easily and focus on the note. Literally, you can pay attention to the specific pane among many notes!!
+Another feature is “Attention Pane”. An active pane card is highlighted and the others are grayed out. This enables you to find an active pane easily and focus on the note. You can pay attention to the specific pane among many notes!!
+
+Active and non-active cards are rendered with different RGB color values. You can set the value difference in the setting tab. Set the value 0 if you want to disable this feature.
 
 ## Other Features
 
-Card colors and background color are configurable in the settings tab.
+Card colors and background color are configurable in the settings tab. 
 
 ![setting tab](resource/screenshot.png)
 
 # Development
 
-Special thanks to these plugins! I used these plugins as a reference for developping of my first pubilc plugin. The basic sturucture is mainly based on Sliding Pane. I refered other plugins to build the color configuration system.
+Special thanks to these amazing plugins! I used these plugins as a reference for developing my first public plugin. The plugin basic structure is mainly based on the Sliding Pane. I referred to other plugins to build the color configuration system.
 
-- [Sliding Panes (Andy Matuschak Mode) Obsidian Plugin](https://github.com/deathau/sliding-panes-obsidian) by deathau
-- [Obsidian Admonition](https://github.com/valentine195/obsidian-admonition) by valentine195
-- [Minimal Theme](https://github.com/kepano/obsidian-minimal-settings) by kepano
-- [Obsidian Embedded Code Title Plugin](https://github.com/tadashi-aikawa/obsidian-embedded-code-title) by tadashi-aikawa
+- [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian) by deathau
+- [Admonition](https://github.com/valentine195/obsidian-admonition) by valentine195
+- [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) by kepano
+- [Embedded Code Title](https://github.com/tadashi-aikawa/obsidian-embedded-code-title) by tadashi-aikawa
 
 ## How to build manually
 
