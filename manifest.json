@@ -4,7 +4,7 @@
 	"author": "PADAone",
 	"minAppVersion": "0.12.13",
 	"authorUrl": "https://github.com/yo-goto",
-	"description": "Card view mode & Attention pane plugin",
-	"version": "0.4.1",
+	"description": "Enable to view your notes as cards.",
+	"version": "0.4.3",
 	"isDesktopOnly": false
 }
