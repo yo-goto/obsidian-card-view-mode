@@ -23,7 +23,8 @@ export default class CardViewModePlugin extends Plugin {
 
   enable = () => {
     this.registerEvent(this.app.workspace.on('resize', this.handleResize));
-    this.app.workspace.layoutReady ? this.reallyEnable() : this.app.workspace.on('layout-change', this.reallyEnable);
+    // fixed↓
+    this.app.workspace.layoutReady ? this.reallyEnable() : this.app.workspace.onLayoutReady(this.reallyEnable);
   }
 
 
@@ -34,8 +35,7 @@ export default class CardViewModePlugin extends Plugin {
   }
 
   disable = () => {
-    this.removeStyle();
-    
+    this.removeStyle(); 
   }
 
   refresh = () => {
@@ -44,28 +44,17 @@ export default class CardViewModePlugin extends Plugin {
   }
 
   removeStyle = () => {
-    // const el = document.getElementById('plugin-card-view-mode');
-    // if (el) el.remove();
+    const el = document.getElementById('plugin-card-view-mode');
+    if (el) el.remove();
     document.body.classList.remove('plugin-card-view-mode');
     document.body.classList.remove('plugin-card-view-mode-cardtitle');
-
-    // document.body.removeClass('plugin-card-view-mode', 'plugin-card-view-mode-cardtitle');
   }
 
   addStyle = () => {
-    // const css = document.createElement('style');
-    // css.id = 'plugin-card-view-mode-cardtitle';
-    // document.getElementsByTagName("head")[0].appendChild(css);
-
-    // document.body.classList.add('plugin-card-view-mode');
-    // this.updateStyle();
-
-    const css = document.createElement('style');
+    const css = document.head.createEl('style');
     css.id = 'plugin-card-view-mode';
     document.getElementsByTagName("head")[0].appendChild(css);
-
     document.body.classList.add('plugin-card-view-mode');
-    document.body.classList.add('plugin-card-view-mode-cardtitle');
     this.updateStyle();
   }
   
