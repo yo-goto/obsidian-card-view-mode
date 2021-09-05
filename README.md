@@ -1,4 +1,6 @@
 # Obsidian Card View Mode
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yo-goto/obsidian-card-view-mode)
+![GitHub All Releases](https://img.shields.io/github/downloads/yo-goto/obsidian-card-view-mode/total?color=red)
 
 ![Screenshot](/resource/screenshot.gif)
 
