@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* ----------------------------------------------  */
-/* Custom CSS Snippet "Card View & Attention Pane" */
+/* SCSS "Card View & Attention Pane"               */
 /* ----------------------------------------------  */
 /* 
 ## v0.4.0
@@ -9,6 +9,9 @@
 ## v0.4.1
 - modidified background-color to make outline & link panes or etc. clearly visible
 - main colors(background & cards) can be changed in the setting tab
+
+## v0.4.4
+- 
 */
 /* ----------------------------------------------  */
 /* for debugging                                   */
@@ -31,6 +34,8 @@
   --cardview-embedded-title-border-right-color-preview: green;
   /* --cardview-debug-color-embedded-note-title-edit: red; */
   /* --cardview-debug-color-embedded-note-title-preview: #198415; */
+  --testColorRed: rgb(175, 0, 0);
+  --testColorGreeen: rgb(8, 150, 0);
   /* for debugging */
   --cardview-shadow: 0px 10px 50px rgba(0, 0, 0, 0.5);
 }
