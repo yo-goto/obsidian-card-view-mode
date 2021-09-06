@@ -13,16 +13,31 @@ declare class CardViewModePlugin extends Plugin {
   refresh(): void;
 }
 
-export class CardViewModeSettings {
-  disabled: boolean = false;
-  cardTitle: boolean = false;
-  colorBackGroundLight: string = "rgb(255, 255, 255)";
-  colorBackGroundDark: string = "rgb(94, 94, 94)";
-  colorActiveCardLight: string = "rgb(255, 255, 255)";
-  colorActiveCardDark: string = "rgb(71, 71, 71)";
-  colorNonActiveCardDark: string = "rgb(71, 71, 71)";
-  colorNonActiveCardLight: string = "rgb(255, 255, 255)";
-  colorDiffBetweenActive: number = 20;
+
+export interface CardViewModeSettings {
+  disabled: boolean;
+  cardTitle: boolean;
+  colorBackGroundLight: string;
+  colorBackGroundDark: string;
+  colorActiveCardLight: string;
+  colorActiveCardDark: string;
+  colorNonActiveCardDark: string;
+  colorNonActiveCardLight: string;
+  colorTitleCard: string;
+  colorDiffBetweenActive: number;
+}
+
+export const DEFAULT_SETTINGS: CardViewModeSettings = {
+  disabled: true,
+  cardTitle: false,
+  colorBackGroundLight: "255, 255, 255",
+  colorBackGroundDark: "94, 94, 94",
+  colorActiveCardLight: "255, 255, 255",
+  colorActiveCardDark: "71, 71, 71",
+  colorNonActiveCardDark: "71, 71, 71",
+  colorNonActiveCardLight: "255, 255, 255",
+  colorTitleCard: "175, 0, 0",
+  colorDiffBetweenActive: 20
 }
 
 export class CardViewModeSettingTab extends PluginSettingTab {
@@ -157,6 +172,27 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         }
     );
 
+    new Setting(containerEl)
+      .setName("Card Title Color")
+      .setDesc("Specify card tittle color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorTitleCard)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorTitleCard);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+
+                if (!color) return;
+                this.plugin.settings.colorTitleCard = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );
 
     // SLIDER setting
     // new Setting(containerEl)

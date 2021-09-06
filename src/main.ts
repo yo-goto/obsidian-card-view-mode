@@ -1,7 +1,8 @@
 import './styles.scss'
 import { Plugin } from 'obsidian';
 import { 
-  CardViewModeSettings, 
+  CardViewModeSettings,
+  DEFAULT_SETTINGS, 
   CardViewModeSettingTab, 
   CardViewModeCommands 
 } from './settings';
@@ -11,7 +12,7 @@ export default class CardViewModePlugin extends Plugin {
   settings: CardViewModeSettings;
 
   async onload() {
-      this.settings = Object.assign(new CardViewModeSettings(), await this.loadData());
+      await this.loadSettings();
       if (!this.settings.disabled) this.enable();
       this.addSettingTab(new CardViewModeSettingTab(this.app, this));
       new CardViewModeCommands(this).addCommands();
@@ -36,6 +37,10 @@ export default class CardViewModePlugin extends Plugin {
 
   disable = () => {
     this.removeStyle(); 
+  }
+
+  async loadSettings() {
+    this.settings = Object.assign(DEFAULT_SETTINGS, await this.loadData());
   }
 
   refresh = () => {
@@ -71,6 +76,10 @@ export default class CardViewModePlugin extends Plugin {
     if (!el) throw "plugin-card-view-mode element not found!";
     else {
         el.innerText = `
+        body.plugin-card-view-mode {
+          --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCard});
+          --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCard});
+        }
         body.plugin-card-view-mode.theme-light{
           --cardview-card-color-active: rgb(${this.settings.colorActiveCardLight});
           --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardLight});
@@ -109,7 +118,6 @@ export default class CardViewModePlugin extends Plugin {
     for(let k =0; k < paneLeafWidth.length; k++){
       resizeObserver.observe(paneLeafWidth[k]);
     }
-
   }
 
 
