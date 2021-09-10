@@ -23,7 +23,9 @@ export interface CardViewModeSettings {
   colorActiveCardDark: string;
   colorNonActiveCardDark: string;
   colorNonActiveCardLight: string;
-  colorTitleCard: string;
+  colorTitleCardEdge: string;
+  colorTitleCardBackGroundLight: string;
+  colorTitleCardBackGroundDark: string;
   colorDiffBetweenActive: number;
 }
 
@@ -31,12 +33,14 @@ export const DEFAULT_SETTINGS: CardViewModeSettings = {
   disabled: true,
   cardTitle: false,
   colorBackGroundLight: "255, 255, 255",
-  colorBackGroundDark: "94, 94, 94",
+  colorBackGroundDark: "145, 145, 145",
   colorActiveCardLight: "255, 255, 255",
   colorActiveCardDark: "71, 71, 71",
   colorNonActiveCardDark: "71, 71, 71",
   colorNonActiveCardLight: "255, 255, 255",
-  colorTitleCard: "175, 0, 0",
+  colorTitleCardEdge: "227, 76, 38",
+  colorTitleCardBackGroundLight: "242, 242, 242",
+  colorTitleCardBackGroundDark: "0, 0, 0",
   colorDiffBetweenActive: 20
 }
 
@@ -173,21 +177,66 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     );
 
     new Setting(containerEl)
-      .setName("Card Title Color")
-      .setDesc("Specify card tittle color")
+      .setName("Card Title Edge Color")
+      .setDesc("Specify card tittle edge color")
       .controlEl.createEl(
         "input",
         {
             type: "color",
-            value: rgbToHex(this.plugin.settings.colorTitleCard)
+            value: rgbToHex(this.plugin.settings.colorTitleCardEdge)
         },
         (el) => {
-            el.value = rgbToHex(this.plugin.settings.colorTitleCard);
+            el.value = rgbToHex(this.plugin.settings.colorTitleCardEdge);
             el.oninput = ({ target }) => {
                 let color = hexToRgb((target as HTMLInputElement).value);
 
                 if (!color) return;
-                this.plugin.settings.colorTitleCard = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.settings.colorTitleCardEdge = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );
+
+    new Setting(containerEl)
+      .setName("Card Title Background Color in Light Mode")
+      .setDesc("Specify card tittle background color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorTitleCardBackGroundLight)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorTitleCardBackGroundLight);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+
+                if (!color) return;
+                this.plugin.settings.colorTitleCardBackGroundLight = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );
+
+
+    new Setting(containerEl)
+      .setName("Card Title Background Color in Dark Mode")
+      .setDesc("Specify card tittle background color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorTitleCardBackGroundDark)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorTitleCardBackGroundDark);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+
+                if (!color) return;
+                this.plugin.settings.colorTitleCardBackGroundDark = `${color.r}, ${color.g}, ${color.b}`;
                 this.plugin.saveData(this.plugin.settings)
                 this.plugin.refresh();
             };

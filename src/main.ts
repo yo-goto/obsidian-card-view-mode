@@ -23,7 +23,7 @@ export default class CardViewModePlugin extends Plugin {
   }   
 
   enable = () => {
-    this.registerEvent(this.app.workspace.on('resize', this.handleResize));
+    // this.registerEvent(this.app.workspace.on('resize', this.handleResize));
     // fixed↓
     this.app.workspace.layoutReady ? this.reallyEnable() : this.app.workspace.onLayoutReady(this.reallyEnable);
   }
@@ -32,7 +32,7 @@ export default class CardViewModePlugin extends Plugin {
   reallyEnable = () => {
     this.app.workspace.off('layout-ready', this.reallyEnable);
     this.addStyle();
-    this.observeLeafWidth();
+    // this.observeLeafWidth();
   }
 
   disable = () => {
@@ -45,7 +45,7 @@ export default class CardViewModePlugin extends Plugin {
 
   refresh = () => {
     this.updateStyle()
-    this.observeLeafWidth();
+    // this.observeLeafWidth();
   }
 
   removeStyle = () => {
@@ -77,48 +77,50 @@ export default class CardViewModePlugin extends Plugin {
     else {
         el.innerText = `
         body.plugin-card-view-mode {
-          --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCard});
-          --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCard});
+          --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCardEdge});
+          --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCardEdge});
         }
         body.plugin-card-view-mode.theme-light{
           --cardview-card-color-active: rgb(${this.settings.colorActiveCardLight});
           --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardLight});
           --cardview-background-color-default: rgb(${this.settings.colorBackGroundLight});
+          --header-color-background: rgb(${this.settings.colorTitleCardBackGroundLight});
         }
         body.plugin-card-view-mode.theme-dark{
           --cardview-card-color-active: rgb(${this.settings.colorActiveCardDark});
           --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardDark});
           --cardview-background-color-default: rgb(${this.settings.colorBackGroundDark});
+          --header-color-background: rgb(${this.settings.colorTitleCardBackGroundDark});
         }
         `;
     }
   }
 
-  handleResize = () => {
-    if (this.app.workspace.layoutReady) {
-      this.observeLeafWidth();
-    }
-  }
+  // handleResize = () => {
+  //   if (this.app.workspace.layoutReady) {
+  //     this.observeLeafWidth();
+  //   }
+  // }
  
-  observeLeafWidth = () => {
-    const cardTitleWidthList = <NodeListOf<HTMLElement>>document.querySelectorAll('.embedded-note-titles .CodeMirror-scroll>h1[id*="title-"]');
-    const paneLeafWidth = <NodeListOf<HTMLElement>>document.querySelectorAll('.CodeMirror-sizer .CodeMirror-lines>div[role="presentation"]');
+  // observeLeafWidth = () => {
+  //   const cardTitleWidthList = <NodeListOf<HTMLElement>>document.querySelectorAll('.embedded-note-titles .CodeMirror-scroll>h1[id*="title-"]');
+  //   const paneLeafWidth = <NodeListOf<HTMLElement>>document.querySelectorAll('.CodeMirror-sizer .CodeMirror-lines>div[role="presentation"]');
     
 
-    const resizeObserver = new ResizeObserver(entries => {
+  //   const resizeObserver = new ResizeObserver(entries => {
       
-      for(let i = 0; i < entries.length; i++) {
-        let entry = entries[i];
-        if(entry.contentRect){
-          cardTitleWidthList[i].style.width = String(entry.contentRect.width + 6) + `px`;
-        }
-      }
-    });
+  //     for(let i = 0; i < entries.length; i++) {
+  //       let entry = entries[i];
+  //       if(entry.contentRect){
+  //         cardTitleWidthList[i].style.width = String(entry.contentRect.width + 6) + `px`;
+  //       }
+  //     }
+  //   });
 
-    for(let k =0; k < paneLeafWidth.length; k++){
-      resizeObserver.observe(paneLeafWidth[k]);
-    }
-  }
+  //   for(let k =0; k < paneLeafWidth.length; k++){
+  //     resizeObserver.observe(paneLeafWidth[k]);
+  //   }
+  // }
 
 
 }

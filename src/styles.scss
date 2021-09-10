@@ -40,10 +40,10 @@ body {
     --cardview-embedded-title-border-padding-bottom: 0px;
 
     --cardview-embedded-title-space-btw-card: -1px;
-    --cardview-embedded-title-border-right-color: #e34c26;
+    --cardview-embedded-title-border-right-color: rgb(227, 76, 38);
     --cardview-embedded-title-border-right-color-edit: red;
     --cardview-embedded-title-border-right-color-preview: green;
-    /* --cardview-debug-color-embedded-note-title-edit: red; */
+    --cardview-debug-color-embedded-note-title-edit: red;
     /* --cardview-debug-color-embedded-note-title-preview: #198415; */
 
     /* for debugging */
@@ -59,7 +59,7 @@ body {
     --cardview-shadow-active: 0px 0px 10px rgba(0, 0, 0, 0.5);
     --cardview-shadow-non-active: 0px 0px 0px rgba(0, 0, 0, 0.7);
 
-    --header-color-background: #000000;
+    --header-color-background: rgb(0, 0, 0);
 }
 
 .theme-light {
@@ -71,7 +71,7 @@ body {
     --cardview-shadow-active: 0px 0px 10px rgba(128, 128, 128, 0.3);
     --cardview-shadow-non-active: 0px 0px 15px rgba(128, 128, 128, 0.25);
 
-    --header-color-background: #f2f2f2;
+    --header-color-background: rgb(242, 242, 242);
 }
 
 
@@ -283,12 +283,12 @@ body.plugin-card-view-mode-cardtitle {
             margin-right: 20px !important;
             padding-top: 5px;
             padding-bottom: 5px;
-            background-color: var(--cardview-card-color-non-active);
+            // background-color: var(--cardview-card-color-non-active);
         }
     
-        // /* editor mode title card */
+        /* editor mode title card */
         h1[id*="edit"] {
-            color: var(--cardview-debug-color-embedded-note-title-edit);
+            // color: var(--cardview-debug-color-embedded-note-title-edit);
     
             font-family: var(--default-font);
             font-size: var(--cardview-embedded-title-font-size) !important;
@@ -303,7 +303,7 @@ body.plugin-card-view-mode-cardtitle {
             padding-left: 18px !important;
     
     
-            background: var(--header-color-background);
+            // background: var(--header-color-background);
             border-left: var(--cardview-embedded-title-border-right-width) solid var(--cardview-embedded-title-border-right-color-edit);
             border-radius: var(--cardview-embedded-title-boarder-radius);
         }
