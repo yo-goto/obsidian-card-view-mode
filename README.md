@@ -26,7 +26,8 @@ Card colors and background color are configurable in the settings tab.
 
 ![setting tab](resource/screenshot.png)
 
-You can globally turn on/off this plugin with a command at any time. 
+- You can globally turn on/off this plugin with a command at any time
+- You can custmize card colors & background color
 
 # Development
 
@@ -37,7 +38,7 @@ Special thanks to these amazing plugins! I used these plugins as a reference for
 - [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) by kepano
 - [Embedded Code Title](https://github.com/tadashi-aikawa/obsidian-embedded-code-title) by tadashi-aikawa
 
-## How to build manually
+## How to install manually
 
 - Clone this repo
 - `npm i` or `yarn` to install dependencies
