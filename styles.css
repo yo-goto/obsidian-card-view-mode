@@ -9,9 +9,6 @@
 ## v0.4.1
 - modidified background-color to make outline & link panes or etc. clearly visible
 - main colors(background & cards) can be changed in the setting tab
-
-## v0.4.4
-- 
 */
 /* ----------------------------------------------  */
 /* for debugging                                   */
@@ -29,13 +26,11 @@
   --cardview-embedded-title-border-padding-top: 0px;
   --cardview-embedded-title-border-padding-bottom: 0px;
   --cardview-embedded-title-space-btw-card: -1px;
-  --cardview-embedded-title-border-right-color: #e34c26;
+  --cardview-embedded-title-border-right-color: rgb(227, 76, 38);
   --cardview-embedded-title-border-right-color-edit: red;
   --cardview-embedded-title-border-right-color-preview: green;
-  /* --cardview-debug-color-embedded-note-title-edit: red; */
+  --cardview-debug-color-embedded-note-title-edit: red;
   /* --cardview-debug-color-embedded-note-title-preview: #198415; */
-  --testColorRed: rgb(175, 0, 0);
-  --testColorGreeen: rgb(8, 150, 0);
   /* for debugging */
   --cardview-shadow: 0px 10px 50px rgba(0, 0, 0, 0.5);
 }
@@ -43,13 +38,13 @@
 .theme-dark {
   --cardview-shadow-active: 0px 0px 10px rgba(0, 0, 0, 0.5);
   --cardview-shadow-non-active: 0px 0px 0px rgba(0, 0, 0, 0.7);
-  --header-color-background: #000000;
+  --header-color-background: rgb(0, 0, 0);
 }
 
 .theme-light {
   --cardview-shadow-active: 0px 0px 10px rgba(128, 128, 128, 0.3);
   --cardview-shadow-non-active: 0px 0px 15px rgba(128, 128, 128, 0.25);
-  --header-color-background: #f2f2f2;
+  --header-color-background: rgb(242, 242, 242);
 }
 
 body.plugin-card-view-mode {
@@ -211,15 +206,16 @@ body.plugin-card-view-mode-cardtitle {
   /* ----------------------------------------------  */
   /* editor mode title */
 }
+body.plugin-card-view-mode-cardtitle.embedded-note-titles {
+  /* editor mode title card */
+}
 body.plugin-card-view-mode-cardtitle.embedded-note-titles .CodeMirror-scroll > h1 {
   margin-left: 15px !important;
   margin-right: 20px !important;
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: var(--cardview-card-color-non-active);
 }
 body.plugin-card-view-mode-cardtitle.embedded-note-titles h1[id*=edit] {
-  color: var(--cardview-debug-color-embedded-note-title-edit);
   font-family: var(--default-font);
   font-size: var(--cardview-embedded-title-font-size) !important;
   font-weight: bold;
@@ -228,7 +224,6 @@ body.plugin-card-view-mode-cardtitle.embedded-note-titles h1[id*=edit] {
   padding-top: var(--cardview-embedded-title-border-padding-top);
   padding-bottom: var(--cardview-embedded-title-border-padding-bottom);
   padding-left: 18px !important;
-  background: var(--header-color-background);
   border-left: var(--cardview-embedded-title-border-right-width) solid var(--cardview-embedded-title-border-right-color-edit);
   border-radius: var(--cardview-embedded-title-boarder-radius);
 }
