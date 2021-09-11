@@ -210,10 +210,12 @@ body.plugin-card-view-mode-cardtitle.embedded-note-titles {
   /* editor mode title card */
 }
 body.plugin-card-view-mode-cardtitle.embedded-note-titles .CodeMirror-scroll > h1 {
+  width: 85%;
   margin-left: 15px !important;
   margin-right: 20px !important;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-right: 20px !important;
 }
 body.plugin-card-view-mode-cardtitle.embedded-note-titles h1[id*=edit] {
   font-family: var(--default-font);

@@ -276,13 +276,13 @@ body.plugin-card-view-mode-cardtitle {
     &.embedded-note-titles {
     
         .CodeMirror-scroll>h1 {
-            // /* たぶんここ↓をいじればサイズ変更できる */
-            // width: 400px;
+            width: 85%;
     
             margin-left: 15px !important;
             margin-right: 20px !important;
             padding-top: 5px;
             padding-bottom: 5px;
+            padding-right: 20px !important;
             // background-color: var(--cardview-card-color-non-active);
         }
     
