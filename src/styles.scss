@@ -2,6 +2,7 @@
 /* SCSS "Card View & Attention Pane"               */
 /* ----------------------------------------------  */
 /* 
+# changelog
 ## v0.4.0
 - fixed sidebar tab background color
 ## v0.4.1
@@ -9,21 +10,9 @@
 - main colors(background & cards) can be changed in the setting tab
 ## v0.4.5
 - fixed note title width
-
+## v0.4.6
+- fixed note title card width in edit mode
 */
-
-// variables
-$debug: false;
-
-
-/* ----------------------------------------------  */
-/* for debugging                                   */
-/* ----------------------------------------------  */
-body {
-    @if $debug {
-        color: red;
-    }
-}
 
 
 /* ----------------------------------------------  */
@@ -278,7 +267,7 @@ body.plugin-card-view-mode-cardtitle {
     &.embedded-note-titles {
     
         .CodeMirror-scroll>h1 {
-            width: 85%;
+            width: calc(100% - 91px); // this value is sepcific to my emvironment?
     
             margin-left: 15px !important;
             margin-right: 20px !important;
@@ -305,7 +294,7 @@ body.plugin-card-view-mode-cardtitle {
             padding-left: 18px !important;
     
     
-            // background: var(--header-color-background);
+            background: var(--header-color-background);
             border-left: var(--cardview-embedded-title-border-right-width) solid var(--cardview-embedded-title-border-right-color-edit);
             border-radius: var(--cardview-embedded-title-boarder-radius);
         }
