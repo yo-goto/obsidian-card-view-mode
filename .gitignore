@@ -12,6 +12,7 @@ package-lock.json
 
 # js // リリースのみに入れる
 main.js
+styles.css
 
 # data
 data.json
