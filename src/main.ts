@@ -24,15 +24,11 @@ export default class CardViewModePlugin extends Plugin {
   }   
 
   enable = () => {
-    // this.registerEvent(this.app.workspace.on('resize', this.handleResize));
-
     this.app.workspace.onLayoutReady(this.reallyEnable);
   }
 
-
   reallyEnable = () => {
     this.addStyle();
-    // this.observeLeafWidth();
   }
 
   disable = () => {
@@ -45,7 +41,6 @@ export default class CardViewModePlugin extends Plugin {
 
   refresh = () => {
     this.updateStyle()
-    // this.observeLeafWidth();
   }
 
   removeStyle = () => {
@@ -58,20 +53,17 @@ export default class CardViewModePlugin extends Plugin {
   addStyle = () => {
     this.style.setAttribute('type', 'text/css');
 
+    // add style in head tag
     document.getElementsByTagName("head")[0].appendChild(this.style);
     document.body.classList.add('plugin-card-view-mode');
     this.updateStyle();
   }
   
   updateStyle = () => {
-    // 1. remove style before changing
-    // this.removeStyle();
-    // これやるとスタイル更新されない
-
-    // 2-a. update boolean settings
+    // 1-a. update boolean settings
     document.body.classList.toggle('plugin-card-view-mode-cardtitle', this.settings.cardTitle);
 
-    // 2-b. update custom css properties
+    // 1-b. update custom css properties
     const el = this.style;
     if (!el) throw "plugin-card-view-mode element not found!";
     else {
@@ -95,33 +87,6 @@ export default class CardViewModePlugin extends Plugin {
         `;
     }
   }
-
-  // handleResize = () => {
-  //   if (this.app.workspace.layoutReady) {
-  //     this.observeLeafWidth();
-  //   }
-  // }
- 
-  // observeLeafWidth = () => {
-  //   const cardTitleWidthList = <NodeListOf<HTMLElement>>document.querySelectorAll('.embedded-note-titles .CodeMirror-scroll>h1[id*="title-"]');
-  //   const paneLeafWidth = <NodeListOf<HTMLElement>>document.querySelectorAll('.CodeMirror-sizer .CodeMirror-lines>div[role="presentation"]');
-    
-
-  //   const resizeObserver = new ResizeObserver(entries => {
-      
-  //     for(let i = 0; i < entries.length; i++) {
-  //       let entry = entries[i];
-  //       if(entry.contentRect){
-  //         cardTitleWidthList[i].style.width = String(entry.contentRect.width + 6) + `px`;
-  //       }
-  //     }
-  //   });
-
-  //   for(let k =0; k < paneLeafWidth.length; k++){
-  //     resizeObserver.observe(paneLeafWidth[k]);
-  //   }
-  // }
-
-
+  
 }
 
