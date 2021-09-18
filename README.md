@@ -6,7 +6,7 @@
 
 ## Feature.1 Card view
 
-This plugin is inspired by Scrapbox(web-based wiki tool) & Zettelkasten method(slipbox) by Niklas Luhmann.
+This plugin is inspired by [Scrapbox](https://scrapbox.io/product?lang=en)(web-based wiki tool) & Zettelkasten method(Slipbox) by Niklas Luhmann.
 
 I found all of the notes are not in the same stage while developing. We need some ways to distinguish the stages. The card view feature is one way to weigh notes and express them.
 
@@ -26,7 +26,8 @@ Card colors and background color are configurable in the settings tab.
 
 ![setting tab](resource/screenshot.png)
 
-You can globally turn on/off this plugin with a command at any time. 
+- You can globally turn on/off this plugin with a command at any time
+- You can custmize card colors & background color
 
 # Development
 
@@ -37,7 +38,7 @@ Special thanks to these amazing plugins! I used these plugins as a reference for
 - [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) by kepano
 - [Embedded Code Title](https://github.com/tadashi-aikawa/obsidian-embedded-code-title) by tadashi-aikawa
 
-## How to build manually
+## How to install manually
 
 - Clone this repo
 - `npm i` or `yarn` to install dependencies
