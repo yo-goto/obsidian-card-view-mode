@@ -10,6 +10,7 @@ import {
 
 export default class CardViewModePlugin extends Plugin {
   settings: CardViewModeSettings;
+  style: HTMLStyleElement = document.head.createEl('style');
 
   async onload() {
       await this.loadSettings();
@@ -24,13 +25,12 @@ export default class CardViewModePlugin extends Plugin {
 
   enable = () => {
     // this.registerEvent(this.app.workspace.on('resize', this.handleResize));
-    // fixed↓
-    this.app.workspace.layoutReady ? this.reallyEnable() : this.app.workspace.onLayoutReady(this.reallyEnable);
+
+    this.app.workspace.onLayoutReady(this.reallyEnable);
   }
 
 
   reallyEnable = () => {
-    this.app.workspace.off('layout-ready', this.reallyEnable);
     this.addStyle();
     // this.observeLeafWidth();
   }
@@ -49,16 +49,16 @@ export default class CardViewModePlugin extends Plugin {
   }
 
   removeStyle = () => {
-    const el = document.getElementById('plugin-card-view-mode');
+    const el = this.style;
     if (el) el.remove();
     document.body.classList.remove('plugin-card-view-mode');
     document.body.classList.remove('plugin-card-view-mode-cardtitle');
   }
 
   addStyle = () => {
-    const css = document.head.createEl('style');
-    css.id = 'plugin-card-view-mode';
-    document.getElementsByTagName("head")[0].appendChild(css);
+    this.style.setAttribute('type', 'text/css');
+
+    document.getElementsByTagName("head")[0].appendChild(this.style);
     document.body.classList.add('plugin-card-view-mode');
     this.updateStyle();
   }
@@ -71,11 +71,11 @@ export default class CardViewModePlugin extends Plugin {
     // 2-a. update boolean settings
     document.body.classList.toggle('plugin-card-view-mode-cardtitle', this.settings.cardTitle);
 
-    // 2-b. updaate custom css properties
-    const el = document.getElementById('plugin-card-view-mode');
+    // 2-b. update custom css properties
+    const el = this.style;
     if (!el) throw "plugin-card-view-mode element not found!";
     else {
-        el.innerText = `
+        el.textContent = `
         body.plugin-card-view-mode {
           --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCardEdge});
           --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCardEdge});
