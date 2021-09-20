@@ -1,6 +1,6 @@
 {
   "name": "obsidian-card-view-mode",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Card View Mode & Attention Pane. View notes as cards!",
   "main": "main.js",
   "scripts": {
