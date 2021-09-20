@@ -29,6 +29,11 @@ Card colors and background color are configurable in the settings tab.
 - You can globally turn on/off this plugin with a command at any time
 - You can custmize card colors & background color
 
+## Compatibility
+- [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian)
+- [Embedded Code Title](https://github.com/tadashi-aikawa/obsidian-embedded-code-title)
+- [Banners](https://github.com/noatpad/obsidian-banners)
+
 # Development
 
 Special thanks to these amazing plugins! I used these plugins as a reference for developing my first public plugin. The plugin basic structure is mainly based on the Sliding Pane. I referred to other plugins to build the color configuration system.

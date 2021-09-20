@@ -14,6 +14,8 @@
 - fixed note title card width in edit mode
 ## v0.4.7
 - made style compatible with Banner plugin
+## v0.4.8
+- fixed banner style
 */
 
 
@@ -267,10 +269,18 @@ body.plugin-card-view-mode {
             padding-left: 15px !important;
             padding-right: 26px !important;
             padding-top: 35px !important;
-            margin-top: 0px !important;
+            margin-top: 0px;
 
             img.banner-image {
                 border-radius: var(--cardview-card-boarder-radius) var(--cardview-card-boarder-radius) 0px 0px !important;
+            }
+        }
+    }
+
+    &.embedded-note-titles {
+        .obsidian-banner-wrapper {
+            &>.obsidian-banner {
+                margin-top: 64px;
             }
         }
     }
@@ -345,6 +355,12 @@ body.plugin-card-view-mode-cardtitle {
         // /* margin around fontmatter box */
         .frontmatter-container {
             margin-bottom: 13px;
+        }
+
+        .obsidian-banner-wrapper {
+            &>.obsidian-banner {
+                margin-top: 35px;
+            }
         }
     }
 }
