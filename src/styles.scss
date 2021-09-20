@@ -12,6 +12,8 @@
 - fixed note title width
 ## v0.4.6
 - fixed note title card width in edit mode
+## v0.4.7
+- made style compatible with Banner plugin
 */
 
 
@@ -254,6 +256,24 @@ body.plugin-card-view-mode {
         /* Background color so PNGs with transparent backgrounds don't look weird */
     }
     
+    /* ----------------------------------------------  */
+    /* banner plugin modification                      */
+    /* ----------------------------------------------  */
+    .obsidian-banner-wrapper {
+        margin-top: calc(var(--banner-height) - 30px);
+
+        &>.obsidian-banner {
+            // images fit with card size
+            padding-left: 15px !important;
+            padding-right: 26px !important;
+            padding-top: 35px !important;
+            margin-top: 0px !important;
+
+            img.banner-image {
+                border-radius: var(--cardview-card-boarder-radius) var(--cardview-card-boarder-radius) 0px 0px !important;
+            }
+        }
+    }
 }
 
 
