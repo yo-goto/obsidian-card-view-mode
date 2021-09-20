@@ -17,6 +17,7 @@ declare class CardViewModePlugin extends Plugin {
 export interface CardViewModeSettings {
   disabled: boolean;
   cardTitle: boolean;
+  cardCornerRadius: number;
   colorBackGroundLight: string;
   colorBackGroundDark: string;
   colorActiveCardLight: string;
@@ -32,6 +33,7 @@ export interface CardViewModeSettings {
 export const DEFAULT_SETTINGS: CardViewModeSettings = {
   disabled: true,
   cardTitle: false,
+  cardCornerRadius: 10,
   colorBackGroundLight: "255, 255, 255",
   colorBackGroundDark: "145, 145, 145",
   colorActiveCardLight: "255, 255, 255",
@@ -84,6 +86,20 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         }
       )
     );
+
+    new Setting(containerEl)
+      .setName('Card Corner Radius')
+      .setDesc('Set number to adjust card corner radius. Default radius is 8px.')
+      .addText(text => text.setPlaceholder('Default: 8px')
+        .setValue((this.plugin.settings.cardCornerRadius || '') + '')
+        .setPlaceholder('defalut: 8')
+        .onChange((value) => {
+          let nu = Number(value)
+          this.plugin.settings.cardCornerRadius = nu;
+          this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+        })
+    );    
 
 
     new Setting(containerEl)
