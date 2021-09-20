@@ -31,7 +31,7 @@ Card colors and background color are configurable in the settings tab.
 
 ## Compatibility
 - [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian)
-- [Embedded Code Title](https://github.com/tadashi-aikawa/obsidian-embedded-code-title)
+- [Embedded Note Title](https://github.com/mgmeyers/obsidian-embedded-note-titles)
 - [Banners](https://github.com/noatpad/obsidian-banners)
 
 # Development
