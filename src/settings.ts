@@ -28,6 +28,8 @@ export interface CardViewModeSettings {
   colorTitleCardBackGroundLight: string;
   colorTitleCardBackGroundDark: string;
   colorDiffBetweenActive: number;
+  colorCardBorderLight: string;
+  colorCardBorderDark: string;
 }
 
 export const DEFAULT_SETTINGS: CardViewModeSettings = {
@@ -43,7 +45,9 @@ export const DEFAULT_SETTINGS: CardViewModeSettings = {
   colorTitleCardEdge: "227, 76, 38",
   colorTitleCardBackGroundLight: "242, 242, 242",
   colorTitleCardBackGroundDark: "0, 0, 0",
-  colorDiffBetweenActive: 20
+  colorDiffBetweenActive: 20,
+  colorCardBorderLight: "255, 255, 255",
+  colorCardBorderDark: "0, 0, 0"
 }
 
 export class CardViewModeSettingTab extends PluginSettingTab {
@@ -77,7 +81,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Toggle Card Title")
-      .setDesc("Experimental: View titles as cards. Enable this option with Embedded Note Title Plugin.")
+      .setDesc("View note titles as cards. Enable this option with Embedded Note Title Plugin.")
       .addToggle(toggle => toggle.setValue(this.plugin.settings.cardTitle)
         .onChange((value) => {
           this.plugin.settings.cardTitle = value;
@@ -100,6 +104,50 @@ export class CardViewModeSettingTab extends PluginSettingTab {
           this.plugin.refresh();
         })
     );    
+
+    new Setting(containerEl)
+      .setName("Card Border Color in Light Mode")
+      .setDesc("Set card border color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorCardBorderLight)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorCardBorderLight);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+
+                if (!color) return;
+                this.plugin.settings.colorCardBorderLight = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );    
+
+    new Setting(containerEl)
+      .setName("Card Border Color in Dark Mode")
+      .setDesc("Set card border color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorCardBorderDark)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorCardBorderDark);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+
+                if (!color) return;
+                this.plugin.settings.colorCardBorderDark = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );        
 
 
     new Setting(containerEl)
