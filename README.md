@@ -22,12 +22,12 @@ Active and non-active cards are rendered with different RGB color values. You ca
 
 ## Other Features
 
-Card colors and background color are configurable in the settings tab. 
+Card colors, background color, card shapes are configurable in the settings tab.
 
 ![setting tab](resource/screenshot.png)
 
-- You can globally turn on/off this plugin with a command at any time
-- You can custmize card colors & background color
+- You can globally turn on/off this plugin with a command at any time.
+- You can custmize card design(colors, corner radius, drop shadow).
 
 ## Compatibility
 - [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian)
@@ -35,7 +35,7 @@ Card colors and background color are configurable in the settings tab.
 - [Banners](https://github.com/noatpad/obsidian-banners)
 
 # Development
-
+## Special Thanks
 Special thanks to these amazing plugins! I used these plugins as a reference for developing my first public plugin. The plugin basic structure is mainly based on the Sliding Pane. I referred to other plugins to build the color configuration system.
 
 - [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian) by deathau
