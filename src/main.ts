@@ -49,6 +49,8 @@ export default class CardViewModePlugin extends Plugin {
     document.body.classList.remove('plugin-card-view-mode');
     document.body.classList.remove('plugin-card-view-mode-cardtitle');
     document.body.classList.remove('plugin-card-view-mode-dropshadow');
+    document.body.classList.remove('plugin-card-view-mode-remove-pane-boudaries');
+    document.body.classList.remove('plugin-card-view-mode-hide-scrollbar');
   }
 
   addStyle = () => {
@@ -61,11 +63,13 @@ export default class CardViewModePlugin extends Plugin {
   }
   
   updateStyle = () => {
-    // 1-a. update boolean settings
+    // a. update boolean settings
     document.body.classList.toggle('plugin-card-view-mode-cardtitle', this.settings.cardTitle);
     document.body.classList.toggle('plugin-card-view-mode-dropshadow', this.settings.cardDropShadow);
+    document.body.classList.toggle('plugin-card-view-mode-remove-pane-boudaries', this.settings.removePaneBoundaries);
+    document.body.classList.toggle('plugin-card-view-mode-hide-scrollbar', this.settings.hideScrollBar);
 
-    // 1-b. update custom css properties
+    // b. update custom css properties
     const el = this.style;
     if (!el) throw "plugin-card-view-mode element not found!";
     else {

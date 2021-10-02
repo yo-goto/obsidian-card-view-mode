@@ -2,11 +2,11 @@
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yo-goto/obsidian-card-view-mode)
 ![GitHub All Releases](https://img.shields.io/github/downloads/yo-goto/obsidian-card-view-mode/total?color=red)
 
-![Screenshot](/resource/screenshot.gif)
+![main screen shot](/resource/screenshot_main_light-min.png)
 
 ## Feature.1 Card view
 
-This plugin is inspired by [Scrapbox](https://scrapbox.io/product?lang=en)(web-based wiki tool) & Zettelkasten method(Slipbox) by Niklas Luhmann.
+This plugin is inspired by [Scrapbox](https://scrapbox.io/product?lang=en) (a web-based wiki tool) & Zettelkasten method(Slipbox) by Niklas Luhmann.
 
 I found all of the notes are not in the same stage while developing. We need some ways to distinguish the stages. The card view feature is one way to weigh notes and express them.
 
@@ -20,11 +20,17 @@ Another feature is “Attention Pane”. An active pane card is highlighted and 
 
 Active and non-active cards are rendered with different RGB color values. You can set the value difference in the setting tab. Set the value 0 if you want to disable this feature.
 
-## Other Features
+## Demo
+
+![Screenshot](/resource/screenshot.gif)
+## Settings
 
 Card colors, background color, card shapes are configurable in the settings tab.
 
-![setting tab](resource/screenshot.png)
+![setting 1](/resource/sc_setting-1-min.png)
+
+![setting 2](/resource/sc_setting-2-min.png)
+
 
 - You can globally turn on/off this plugin with a command at any time.
 - You can custmize card design(colors, corner radius, drop shadow).
@@ -32,17 +38,11 @@ Card colors, background color, card shapes are configurable in the settings tab.
 ## Compatibility
 - [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian)
 - [Embedded Note Title](https://github.com/mgmeyers/obsidian-embedded-note-titles)
-- [Banners](https://github.com/noatpad/obsidian-banners)
+- [Banners](https://github.com/noatpad/obsidian-banners) (compatibility is not yet stable)
 
 # Development
-## Special Thanks
-Special thanks to these amazing plugins! I used these plugins as a reference for developing my first public plugin. The plugin basic structure is mainly based on the Sliding Pane. I referred to other plugins to build the color configuration system.
 
-- [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian) by deathau
-- [Admonition](https://github.com/valentine195/obsidian-admonition) by valentine195
-- [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) by kepano
-- [Embedded Code Title](https://github.com/tadashi-aikawa/obsidian-embedded-code-title) by tadashi-aikawa
-
+[Roadmap](https://github.com/yo-goto/obsidian-card-view-mode/projects/1)
 ## How to install manually
 
 - Clone this repo
@@ -50,6 +50,15 @@ Special thanks to these amazing plugins! I used these plugins as a reference for
 - `npm run dev` to compile
 - Copy `manifiest.json`, `main.js` and `styles.css` to a subfolder of your plugins folder
 - Reload obsidian to see changes
+
+## Special Thanks
+Special thanks to these amazing plugins! I used these plugins as a reference for developing my first public plugin. The plugin basic structure is mainly based on the Sliding Pane. I referred to other plugins to build the color configuration system.
+
+- [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian) by deathau
+- [Admonition](https://github.com/valentine195/obsidian-admonition) by valentine195
+- [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) by kepano
+- [Embedded Code Title](https://github.com/tadashi-aikawa/obsidian-embedded-code-title) by tadashi-aikawa
+- [Calendar](https://github.com/liamcain/obsidian-calendar-plugin) by liamcain
 
 ## Original CSS
 [Gist Link](https://gist.github.com/yo-goto/742906c6463310e3f4e18c745dede016)
