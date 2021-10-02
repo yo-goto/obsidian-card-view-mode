@@ -2,7 +2,8 @@
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yo-goto/obsidian-card-view-mode)
 ![GitHub All Releases](https://img.shields.io/github/downloads/yo-goto/obsidian-card-view-mode/total?color=red)
 
-![main screen shot](/resource/screenshot_main_light-min.png)
+![main screen shot](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/sc_setting-1-min.png)
+
 
 ## Feature.1 Card view
 
@@ -22,14 +23,14 @@ Active and non-active cards are rendered with different RGB color values. You ca
 
 ## Demo
 
-![Screenshot](/resource/screenshot.gif)
+![Screenshot](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/screenshot.gif)
 ## Settings
 
 Card colors, background color, card shapes are configurable in the settings tab.
 
-![setting 1](/resource/sc_setting-1-min.png)
+![setting 1](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/sc_setting-1-min.png)
 
-![setting 2](/resource/sc_setting-2-min.png)
+![setting 2](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/sc_setting-2-min.png)
 
 
 - You can globally turn on/off this plugin with a command at any time.
