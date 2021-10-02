@@ -86,7 +86,6 @@ body.plugin-card-view-mode {
         /* sepfify how to color padding */
         background-clip: border-box;
         background-color: var(--cardview-background-color-default);
-        box-shadow: var(--cardview-shadow);
         border-radius: var(--cardview-card-boarder-radius);
     
         /* modify space between card and embeded-note-title's header */
@@ -183,14 +182,12 @@ body.plugin-card-view-mode {
     .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
     .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         background-color: var(--cardview-card-color-active);
-        box-shadow: var(--cardview-shadow-active);
     }
     
     /* non-active pane card color and shadow */
     .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
     .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         background-color: var(--cardview-card-color-non-active);
-        box-shadow: var(--cardview-shadow-active);
     }
     
     
@@ -293,14 +290,43 @@ body.plugin-card-view-mode {
     }
 }
 
+body.plugin-card-view-mode-dropshadow {
+
+    .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+        box-shadow: var(--cardview-shadow);
+    }
+
+    /* active pane card shadow */
+    .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+        box-shadow: var(--cardview-shadow-active);
+    }
+
+    /* non-active pane card shadow */
+    .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+        box-shadow: var(--cardview-shadow-active);
+    }
+}
 
 body.plugin-card-view-mode-cardtitle {
+
+    &.plugin-card-view-mode-dropshadow {
+        h1[id*="edit"] {
+            box-shadow: var(--cardview-shadow-active);
+        }
+
+        .markdown-preview-view.is-readable-line-width>h1 {
+            box-shadow: var(--cardview-shadow-active);
+        }
+    }
 
     /* ----------------------------------------------  */
     /* embeded note title plugin modification          */
     /* ----------------------------------------------  */
+
     /* editor mode title */
-    
     &.embedded-note-titles {
     
         .CodeMirror-scroll>h1 {

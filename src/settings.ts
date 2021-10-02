@@ -19,6 +19,7 @@ export interface CardViewModeSettings {
   cardTitle: boolean;
   cardCornerRadius: number;
   cardTitleCornerRadius: number;
+  cardDropShadow: boolean;
   colorBackGroundLight: string;
   colorBackGroundDark: string;
   colorActiveCardLight: string;
@@ -39,6 +40,7 @@ export const DEFAULT_SETTINGS: CardViewModeSettings = {
   cardTitle: false,
   cardCornerRadius: 10,
   cardTitleCornerRadius: 5,
+  cardDropShadow: true,
   colorBackGroundLight: "255, 255, 255",
   colorBackGroundDark: "145, 145, 145",
   colorActiveCardLight: "255, 255, 255",
@@ -66,18 +68,17 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
 
     this.containerEl.createEl("h3", {
-      text: "Toggle Settings",
+      text: "General Settings",
     });
     this.addSettingToggleCardView();
-
     this.addSettingToggleCardTitle();
     
     this.containerEl.createEl("h3", {
       text: "Card Design",
     });
+    this.addSettingToggleDropShadow();
     this.addSettingCardCornerRadius();
     this.addSettingCardTitleCornerRadius();
-    
     
     this.containerEl.createEl("h4", {
       text: "Dark Mode Color",
@@ -144,6 +145,20 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         }
       )
     );
+  }
+
+  addSettingToggleDropShadow(): void {
+    new Setting(this.containerEl)
+      .setName("Toggle Drop Shadow")
+      .setDesc("Toggle drop shadow to cards.")
+      .addToggle(toggle => toggle.setValue(this.plugin.settings.cardDropShadow)
+        .onChange((value) => {
+          this.plugin.settings.cardDropShadow = value;
+          this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+        }
+      )
+    );    
   }
   
   addSettingCardCornerRadius(): void {
