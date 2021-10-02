@@ -136,35 +136,7 @@ body.plugin-card-view-mode {
         padding-left: var(--cardview-side-padding);
     }
     
-    
-    
-    /* ----------------------------------------------  */
-    /* remove pane boundaries                          */
-    /* ----------------------------------------------  */
-    .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
-    .workspace-split.mod-left-split>.workspace-leaf-resize-handle {
-        background: transparent;
-        border-right: 1px solid var(--background-modifier-border);
-        width: 2px !important;
-    }
-    
-    /* right boundary */
-    .workspace-split.mod-vertical>.workspace-leaf {
-        padding: 0px;
-    }
-    
-    /* space between header titles */
-    .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle {
-        border-right: 0px !important;
-    }
-    
-    /* hide scrollbar */
-    ::-webkit-scrollbar {
-        display: none !important;
-    }
-    
-    
-    
+        
     /* ----------------------------------------------  */
     /* attention-pane                                  */
     /* ----------------------------------------------  */
@@ -191,7 +163,6 @@ body.plugin-card-view-mode {
     .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         background-color: var(--cardview-card-color-non-active);
     }
-    
     
     
     /* ----------------------------------------------  */
@@ -290,27 +261,59 @@ body.plugin-card-view-mode {
             }
         }
     }
+
+    &.plugin-card-view-mode-remove-pane-boudaries {
+
+        /* ----------------------------------------------  */
+        /* remove pane boundaries                          */
+        /* ----------------------------------------------  */
+        .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle,
+        .workspace-split.mod-left-split>.workspace-leaf-resize-handle {
+            background: transparent;
+            border-right: 1px solid var(--background-modifier-border);
+            width: 2px !important;
+        }
+
+        /* right boundary */
+        .workspace-split.mod-vertical>.workspace-leaf {
+            padding: 0px;
+        }
+
+        /* space between header titles */
+        .workspace-split.mod-vertical>*>.workspace-leaf-resize-handle {
+            border-right: 0px !important;
+        }
+
+    }
+    
+    &.plugin-card-view-mode-hide-scrollbar {
+        /* hide scrollbar */
+        ::-webkit-scrollbar {
+            display: none !important;
+        }
+    }
+
+    &.plugin-card-view-mode-dropshadow {
+
+        .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+        .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+            box-shadow: var(--cardview-shadow);
+        }
+
+        /* active pane card shadow */
+        .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+        .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+            box-shadow: var(--cardview-shadow-active);
+        }
+
+        /* non-active pane card shadow */
+        .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+        .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+            box-shadow: var(--cardview-shadow-active);
+        }
+    }
 }
 
-body.plugin-card-view-mode-dropshadow {
-
-    .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
-    .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-        box-shadow: var(--cardview-shadow);
-    }
-
-    /* active pane card shadow */
-    .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
-    .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-        box-shadow: var(--cardview-shadow-active);
-    }
-
-    /* non-active pane card shadow */
-    .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
-    .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-        box-shadow: var(--cardview-shadow-active);
-    }
-}
 
 body.plugin-card-view-mode-cardtitle {
 

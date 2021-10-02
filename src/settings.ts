@@ -20,6 +20,8 @@ export interface CardViewModeSettings {
   cardCornerRadius: number;
   cardTitleCornerRadius: number;
   cardDropShadow: boolean;
+  removePaneBoundaries: boolean;
+  hideScrollBar: boolean;
   colorBackGroundLight: string;
   colorBackGroundDark: string;
   colorActiveCardLight: string;
@@ -41,6 +43,8 @@ export const DEFAULT_SETTINGS: CardViewModeSettings = {
   cardCornerRadius: 10,
   cardTitleCornerRadius: 5,
   cardDropShadow: true,
+  removePaneBoundaries: true,
+  hideScrollBar: true,
   colorBackGroundLight: "255, 255, 255",
   colorBackGroundDark: "145, 145, 145",
   colorActiveCardLight: "255, 255, 255",
@@ -74,8 +78,10 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     this.addSettingToggleCardTitle();
     
     this.containerEl.createEl("h3", {
-      text: "Card Design",
+      text: "Card View Designer",
     });
+    this.addSettingToggleRemovePaneBoundariies();
+    this.addSettingHideScrollbar();
     this.addSettingToggleDropShadow();
     this.addSettingCardCornerRadius();
     this.addSettingCardTitleCornerRadius();
@@ -118,7 +124,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingToggleCardView(): void {
     new Setting(this.containerEl)
     .setName("Toggle Card View")
-    .setDesc("Turns card view mode on or off globally")
+    .setDesc("Turns card view mode on or off globally.")
     .addToggle(toggle => toggle.setValue(!this.plugin.settings.disabled)
     .onChange((value) => {
       this.plugin.settings.disabled = !value;
@@ -147,10 +153,38 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     );
   }
 
+  addSettingToggleRemovePaneBoundariies(): void {
+    new Setting(this.containerEl)
+      .setName("Remove Pane Boundaries")
+      .setDesc("When toggled, pane boundaries will be removed.")
+      .addToggle(toggle => toggle.setValue(this.plugin.settings.removePaneBoundaries)
+        .onChange((value) => {
+          this.plugin.settings.removePaneBoundaries = value;
+          this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+        }
+      )
+    );        
+  }
+
+  addSettingHideScrollbar(): void {
+    new Setting(this.containerEl)
+      .setName("Hide scrollbar")
+      .setDesc("When toggled, scrollbar will be removed.")
+      .addToggle(toggle => toggle.setValue(this.plugin.settings.hideScrollBar)
+        .onChange((value) => {
+          this.plugin.settings.hideScrollBar = value;
+          this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+        }
+      )
+    );            
+  }
+
   addSettingToggleDropShadow(): void {
     new Setting(this.containerEl)
-      .setName("Toggle Drop Shadow")
-      .setDesc("Toggle drop shadow to cards.")
+      .setName("Drop Shadow")
+      .setDesc("When toggled, dropping shadow to cards will be activated.")
       .addToggle(toggle => toggle.setValue(this.plugin.settings.cardDropShadow)
         .onChange((value) => {
           this.plugin.settings.cardDropShadow = value;
@@ -167,7 +201,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
       .setDesc('Set number to adjust card corner radius. Default radius is 10px.')
       .addText(text => text.setPlaceholder('Default: 10px')
         .setValue((this.plugin.settings.cardCornerRadius || '') + '')
-        .setPlaceholder('defalut: 8')
         .onChange((value) => {
           let nu = Number(value)
           this.plugin.settings.cardCornerRadius = nu;
@@ -183,7 +216,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
       .setDesc('Set number to adjust title card corner radius. Default radius is 5px.')
       .addText(text => text.setPlaceholder('Default: 5px')
         .setValue((this.plugin.settings.cardTitleCornerRadius || '') + '')
-        .setPlaceholder('defalut: 8')
         .onChange((value) => {
           let nu = Number(value)
           this.plugin.settings.cardTitleCornerRadius = nu;
@@ -244,7 +276,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingBackgroundColorLight(): void {
     new Setting(this.containerEl)
       .setName("Background Color")
-      .setDesc("Set background color in light mode")
+      .setDesc("Set background color.")
       .controlEl.createEl(
         "input",
         {
@@ -268,7 +300,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingBackgroundColorDark(): void {
     new Setting(this.containerEl)
       .setName("Background Color")
-      .setDesc("Set background color in dark mode")
+      .setDesc("Set background color.")
       .controlEl.createEl(
         "input",
         {
@@ -292,7 +324,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingActiveCardColorLight(): void {
     new Setting(this.containerEl)
       .setName("Active Card Color")
-      .setDesc("Set active card color in light mode")
+      .setDesc("Set active card color.")
       .controlEl.createEl(
         "input",
         {
@@ -317,7 +349,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingActiveCardColorDark(): void {
     new Setting(this.containerEl)
       .setName("Active Card Color")
-      .setDesc("Set active card color in dark mode")
+      .setDesc("Set active card color.")
       .controlEl.createEl(
         "input",
         {
@@ -456,7 +488,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingDiffBetActiveNonactive(): void {
     new Setting(this.containerEl)
       .setName('Diff Between Active & NonActive Cards')
-      .setDesc('Set Color difference between active & non active cards. Set 0 to diable "Attention pane". Value rage: "-255~255".')
+      .setDesc('Set Color difference between active & non active cards. Set this value 0 to diable "Attention pane". Value range: "-255~255".')
       .addText(text => text.setPlaceholder('Default: 0')
         .setValue((this.plugin.settings.colorDiffBetweenActive || '') + '')
         .onChange((value) => {
