@@ -2,8 +2,7 @@
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yo-goto/obsidian-card-view-mode)
 ![GitHub All Releases](https://img.shields.io/github/downloads/yo-goto/obsidian-card-view-mode/total?color=red)
 
-![main screen shot](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/sc_setting-1-min.png)
-
+![main screen shot](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/screenshot_main_light-min.png)
 
 ## Feature.1 Card view
 
