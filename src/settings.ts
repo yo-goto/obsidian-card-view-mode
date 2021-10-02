@@ -456,13 +456,13 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingDiffBetActiveNonactive(): void {
     new Setting(this.containerEl)
       .setName('Diff Between Active & NonActive Cards')
-      .setDesc('Set Color difference between active & non active cards. Set 0 to diable "Attention pane"')
-      .addText(text => text.setPlaceholder('Default: 0 (Range: -255~255)')
+      .setDesc('Set Color difference between active & non active cards. Set 0 to diable "Attention pane". Value rage: "-255~255".')
+      .addText(text => text.setPlaceholder('Default: 0')
         .setValue((this.plugin.settings.colorDiffBetweenActive || '') + '')
         .onChange((value) => {
           let nu = Number(value)
           this.plugin.settings.colorDiffBetweenActive = nu;
-          let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
+          let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardLight));
           let activeColorDark = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
           this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - nu}, ${activeColorLight.g - nu}, ${activeColorLight.b - nu}`;
           this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - nu}, ${activeColorDark.g - nu}, ${activeColorDark.b - nu}`;
