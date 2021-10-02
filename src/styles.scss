@@ -16,6 +16,8 @@
 - made style compatible with Banner plugin
 ## v0.4.8
 - fixed banner style
+## v0.4.9
+- added several option items(drop shadow, title edge color in the both mode)
 */
 
 
@@ -39,10 +41,16 @@
     --cardview-embedded-title-border-right-color-edit: red;
     --cardview-embedded-title-border-right-color-preview: green;
     --cardview-debug-color-embedded-note-title-edit: red;
-    /* --cardview-debug-color-embedded-note-title-preview: #198415; */
-
+    --cardview-border-color: white;
+    
     /* for debugging */
     --cardview-shadow: 0px 10px 50px rgba(0, 0, 0, 0.5);
+    /* --cardview-debug-color-embedded-note-title-preview: #198415; */
+    // --test-color: rgb(123, 230, 1);
+
+    // tool
+    // var(--background-modifier-border);
+    // --background-modifier-border
 
 }
 
@@ -80,7 +88,6 @@ body.plugin-card-view-mode {
         /* sepfify how to color padding */
         background-clip: border-box;
         background-color: var(--cardview-background-color-default);
-        box-shadow: var(--cardview-shadow);
         border-radius: var(--cardview-card-boarder-radius);
     
         /* modify space between card and embeded-note-title's header */
@@ -96,6 +103,7 @@ body.plugin-card-view-mode {
     .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         padding-right: 20px;
         padding-left: 18px;
+        border: 1px solid var(--cardview-border-color);
     }
     
     /* preview mode margin*/
@@ -119,7 +127,7 @@ body.plugin-card-view-mode {
         padding-right: 5px;
         margin-left: 15px;
         margin-right: 26px;
-    
+        border: 1px solid var(--cardview-border-color);
     }
     
     /* editor mode margin */
@@ -176,14 +184,12 @@ body.plugin-card-view-mode {
     .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
     .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         background-color: var(--cardview-card-color-active);
-        box-shadow: var(--cardview-shadow-active);
     }
     
     /* non-active pane card color and shadow */
     .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
     .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         background-color: var(--cardview-card-color-non-active);
-        box-shadow: var(--cardview-shadow-active);
     }
     
     
@@ -286,14 +292,43 @@ body.plugin-card-view-mode {
     }
 }
 
+body.plugin-card-view-mode-dropshadow {
+
+    .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+        box-shadow: var(--cardview-shadow);
+    }
+
+    /* active pane card shadow */
+    .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+        box-shadow: var(--cardview-shadow-active);
+    }
+
+    /* non-active pane card shadow */
+    .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+        box-shadow: var(--cardview-shadow-active);
+    }
+}
 
 body.plugin-card-view-mode-cardtitle {
+
+    &.plugin-card-view-mode-dropshadow {
+        h1[id*="edit"] {
+            box-shadow: var(--cardview-shadow-active);
+        }
+
+        .markdown-preview-view.is-readable-line-width>h1 {
+            box-shadow: var(--cardview-shadow-active);
+        }
+    }
 
     /* ----------------------------------------------  */
     /* embeded note title plugin modification          */
     /* ----------------------------------------------  */
+
     /* editor mode title */
-    
     &.embedded-note-titles {
     
         .CodeMirror-scroll>h1 {

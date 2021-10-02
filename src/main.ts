@@ -48,6 +48,7 @@ export default class CardViewModePlugin extends Plugin {
     if (el) el.remove();
     document.body.classList.remove('plugin-card-view-mode');
     document.body.classList.remove('plugin-card-view-mode-cardtitle');
+    document.body.classList.remove('plugin-card-view-mode-dropshadow');
   }
 
   addStyle = () => {
@@ -62,6 +63,7 @@ export default class CardViewModePlugin extends Plugin {
   updateStyle = () => {
     // 1-a. update boolean settings
     document.body.classList.toggle('plugin-card-view-mode-cardtitle', this.settings.cardTitle);
+    document.body.classList.toggle('plugin-card-view-mode-dropshadow', this.settings.cardDropShadow);
 
     // 1-b. update custom css properties
     const el = this.style;
@@ -70,20 +72,25 @@ export default class CardViewModePlugin extends Plugin {
         el.textContent = `
         body.plugin-card-view-mode {
           --cardview-card-boarder-radius: ${this.settings.cardCornerRadius}px;
-          --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCardEdge});
-          --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCardEdge});
+          --cardview-embedded-title-boarder-radius: ${this.settings.cardTitleCornerRadius}px;
         }
         body.plugin-card-view-mode.theme-light{
           --cardview-card-color-active: rgb(${this.settings.colorActiveCardLight});
           --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardLight});
           --cardview-background-color-default: rgb(${this.settings.colorBackGroundLight});
           --header-color-background: rgb(${this.settings.colorTitleCardBackGroundLight});
+          --cardview-border-color: rgb(${this.settings.colorCardBorderLight});
+          --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCardEdgeLight});
+          --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCardEdgeLight});
         }
         body.plugin-card-view-mode.theme-dark{
           --cardview-card-color-active: rgb(${this.settings.colorActiveCardDark});
           --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardDark});
           --cardview-background-color-default: rgb(${this.settings.colorBackGroundDark});
           --header-color-background: rgb(${this.settings.colorTitleCardBackGroundDark});
+          --cardview-border-color: rgb(${this.settings.colorCardBorderDark});
+          --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCardEdgeDark});
+          --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCardEdgeDark});
         }
         `;
     }

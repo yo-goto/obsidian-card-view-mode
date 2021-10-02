@@ -18,32 +18,42 @@ export interface CardViewModeSettings {
   disabled: boolean;
   cardTitle: boolean;
   cardCornerRadius: number;
+  cardTitleCornerRadius: number;
+  cardDropShadow: boolean;
   colorBackGroundLight: string;
   colorBackGroundDark: string;
   colorActiveCardLight: string;
   colorActiveCardDark: string;
   colorNonActiveCardDark: string;
   colorNonActiveCardLight: string;
-  colorTitleCardEdge: string;
+  colorTitleCardEdgeDark: string;
+  colorTitleCardEdgeLight: string;
   colorTitleCardBackGroundLight: string;
   colorTitleCardBackGroundDark: string;
   colorDiffBetweenActive: number;
+  colorCardBorderLight: string;
+  colorCardBorderDark: string;
 }
 
 export const DEFAULT_SETTINGS: CardViewModeSettings = {
   disabled: true,
   cardTitle: false,
   cardCornerRadius: 10,
+  cardTitleCornerRadius: 5,
+  cardDropShadow: true,
   colorBackGroundLight: "255, 255, 255",
   colorBackGroundDark: "145, 145, 145",
   colorActiveCardLight: "255, 255, 255",
   colorActiveCardDark: "71, 71, 71",
   colorNonActiveCardDark: "71, 71, 71",
   colorNonActiveCardLight: "255, 255, 255",
-  colorTitleCardEdge: "227, 76, 38",
+  colorTitleCardEdgeDark: "227, 76, 38",
+  colorTitleCardEdgeLight: "123, 230, 1",
   colorTitleCardBackGroundLight: "242, 242, 242",
   colorTitleCardBackGroundDark: "0, 0, 0",
-  colorDiffBetweenActive: 20
+  colorDiffBetweenActive: 0,
+  colorCardBorderLight: "255, 255, 255",
+  colorCardBorderDark: "0, 0, 0"
 }
 
 export class CardViewModeSettingTab extends PluginSettingTab {
@@ -54,30 +64,79 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   }
 
   display(): void {
-    let { containerEl } = this;
+    this.containerEl.empty();
 
-    containerEl.empty();
 
-    new Setting(containerEl)
-      .setName("Toggle Card View")
-      .setDesc("Turns card view mode on or off globally")
-      .addToggle(toggle => toggle.setValue(!this.plugin.settings.disabled)
-        .onChange((value) => {
-          this.plugin.settings.disabled = !value;
-          this.plugin.saveData(this.plugin.settings);
-          if (this.plugin.settings.disabled) {
-            this.plugin.disable();
-          }
-          else {
-            this.plugin.enable();
-          }
-        }
-      )
+    this.containerEl.createEl("h3", {
+      text: "General Settings",
+    });
+    this.addSettingToggleCardView();
+    this.addSettingToggleCardTitle();
+    
+    this.containerEl.createEl("h3", {
+      text: "Card Design",
+    });
+    this.addSettingToggleDropShadow();
+    this.addSettingCardCornerRadius();
+    this.addSettingCardTitleCornerRadius();
+    
+    this.containerEl.createEl("h4", {
+      text: "Dark Mode Color",
+    });
+    this.addSettingBackgroundColorDark();
+    this.addSettingActiveCardColorDark();
+    this.addSettingCardBorderColorDark();
+    this.addSettingCardTitleBackgroundColorDark();
+    this.addSettingCardTitleEdgeColorDark();
+
+    // detail summary
+    // this.containerEl.createEl("details", {
+    //   text: ""
+    // }).createEl("summary", {
+    //   text: "Dark mode",
+    // });
+    
+    
+
+    this.containerEl.createEl("h4", {
+      text: "Light Mode Color"
+    });
+    this.addSettingBackgroundColorLight();
+    this.addSettingActiveCardColorLight();
+    this.addSettingCardBorderColorLight();
+    this.addSettingCardTitleBackgroundColorLight();
+    this.addSettingCardTitleEdgeColorLight();
+
+
+    this.containerEl.createEl("h3", {
+      text: "Attention Pane",
+    });
+    this.addSettingDiffBetActiveNonactive();
+    
+  }
+  
+  addSettingToggleCardView(): void {
+    new Setting(this.containerEl)
+    .setName("Toggle Card View")
+    .setDesc("Turns card view mode on or off globally")
+    .addToggle(toggle => toggle.setValue(!this.plugin.settings.disabled)
+    .onChange((value) => {
+      this.plugin.settings.disabled = !value;
+      this.plugin.saveData(this.plugin.settings);
+      if (this.plugin.settings.disabled) {
+        this.plugin.disable();
+      }
+      else {
+        this.plugin.enable();
+      }
+    })
     );
-
-    new Setting(containerEl)
-      .setName("Toggle Card Title")
-      .setDesc("Experimental: View titles as cards. Enable this option with Embedded Note Title Plugin.")
+  }
+  
+  addSettingToggleCardTitle(): void {
+    new Setting(this.containerEl)
+      .setName("Toggle Title Card")
+      .setDesc("View note titles as cards. Enable this option with Embedded Note Title Plugin.")
       .addToggle(toggle => toggle.setValue(this.plugin.settings.cardTitle)
         .onChange((value) => {
           this.plugin.settings.cardTitle = value;
@@ -86,11 +145,27 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         }
       )
     );
+  }
 
-    new Setting(containerEl)
+  addSettingToggleDropShadow(): void {
+    new Setting(this.containerEl)
+      .setName("Toggle Drop Shadow")
+      .setDesc("Toggle drop shadow to cards.")
+      .addToggle(toggle => toggle.setValue(this.plugin.settings.cardDropShadow)
+        .onChange((value) => {
+          this.plugin.settings.cardDropShadow = value;
+          this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+        }
+      )
+    );    
+  }
+  
+  addSettingCardCornerRadius(): void {
+    new Setting(this.containerEl)
       .setName('Card Corner Radius')
-      .setDesc('Set number to adjust card corner radius. Default radius is 8px.')
-      .addText(text => text.setPlaceholder('Default: 8px')
+      .setDesc('Set number to adjust card corner radius. Default radius is 10px.')
+      .addText(text => text.setPlaceholder('Default: 10px')
         .setValue((this.plugin.settings.cardCornerRadius || '') + '')
         .setPlaceholder('defalut: 8')
         .onChange((value) => {
@@ -99,12 +174,77 @@ export class CardViewModeSettingTab extends PluginSettingTab {
           this.plugin.saveData(this.plugin.settings);
           this.plugin.refresh();
         })
+    );
+  }
+
+  addSettingCardTitleCornerRadius(): void {
+    new Setting(this.containerEl)
+      .setName('Title Card Corner Radius')
+      .setDesc('Set number to adjust title card corner radius. Default radius is 5px.')
+      .addText(text => text.setPlaceholder('Default: 5px')
+        .setValue((this.plugin.settings.cardTitleCornerRadius || '') + '')
+        .setPlaceholder('defalut: 8')
+        .onChange((value) => {
+          let nu = Number(value)
+          this.plugin.settings.cardTitleCornerRadius = nu;
+          this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+        })
     );    
+  }
 
+  addSettingCardBorderColorLight(): void {
+    new Setting(this.containerEl)
+      .setName("Card Border Color")
+      .setDesc("Set card border color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorCardBorderLight)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorCardBorderLight);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+  
+                if (!color) return;
+                this.plugin.settings.colorCardBorderLight = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );
+  }
+  
+  addSettingCardBorderColorDark(): void {
+    new Setting(this.containerEl)
+      .setName("Card Border Color")
+      .setDesc("Set card border color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorCardBorderDark)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorCardBorderDark);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
 
-    new Setting(containerEl)
-      .setName("Background Color in Light Mode")
-      .setDesc("Specify background color in light mode")
+                if (!color) return;
+                this.plugin.settings.colorCardBorderDark = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );
+  }
+  
+  addSettingBackgroundColorLight(): void {
+    new Setting(this.containerEl)
+      .setName("Background Color")
+      .setDesc("Set background color in light mode")
       .controlEl.createEl(
         "input",
         {
@@ -115,7 +255,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
             el.value = rgbToHex(this.plugin.settings.colorBackGroundLight);
             el.oninput = ({ target }) => {
                 let color = hexToRgb((target as HTMLInputElement).value);
-
+  
                 if (!color) return;
                 this.plugin.settings.colorBackGroundLight = `${color.r}, ${color.g}, ${color.b}`;
                 this.plugin.saveData(this.plugin.settings)
@@ -123,10 +263,12 @@ export class CardViewModeSettingTab extends PluginSettingTab {
             };
         }
     );
-    
-    new Setting(containerEl)
-      .setName("Background Color in Dark Mode")
-      .setDesc("Specify background color in dark mode")
+  }
+  
+  addSettingBackgroundColorDark(): void {
+    new Setting(this.containerEl)
+      .setName("Background Color")
+      .setDesc("Set background color in dark mode")
       .controlEl.createEl(
         "input",
         {
@@ -145,10 +287,12 @@ export class CardViewModeSettingTab extends PluginSettingTab {
             };
         }
     );
-
-    new Setting(containerEl)
-      .setName("Active Card Color in Light Mode")
-      .setDesc("Specify active card color in light mode")
+  }
+  
+  addSettingActiveCardColorLight(): void {
+    new Setting(this.containerEl)
+      .setName("Active Card Color")
+      .setDesc("Set active card color in light mode")
       .controlEl.createEl(
         "input",
         {
@@ -167,11 +311,13 @@ export class CardViewModeSettingTab extends PluginSettingTab {
                 this.plugin.refresh();
             };
         }
-    );    
-
-    new Setting(containerEl)
-      .setName("Active Card Color in Dark Mode")
-      .setDesc("Specify active card color in dark mode")
+    );
+  }
+  
+  addSettingActiveCardColorDark(): void {
+    new Setting(this.containerEl)
+      .setName("Active Card Color")
+      .setDesc("Set active card color in dark mode")
       .controlEl.createEl(
         "input",
         {
@@ -191,32 +337,60 @@ export class CardViewModeSettingTab extends PluginSettingTab {
             };
         }
     );
-
-    new Setting(containerEl)
-      .setName("Card Title Edge Color")
-      .setDesc("Specify card tittle edge color")
+  }
+  
+  addSettingCardTitleEdgeColorDark(): void {
+    new Setting(this.containerEl)
+      .setName("Title Card Edge Color")
+      .setDesc("Set title card edge color")
       .controlEl.createEl(
         "input",
         {
             type: "color",
-            value: rgbToHex(this.plugin.settings.colorTitleCardEdge)
+            value: rgbToHex(this.plugin.settings.colorTitleCardEdgeDark)
         },
         (el) => {
-            el.value = rgbToHex(this.plugin.settings.colorTitleCardEdge);
+            el.value = rgbToHex(this.plugin.settings.colorTitleCardEdgeDark);
             el.oninput = ({ target }) => {
                 let color = hexToRgb((target as HTMLInputElement).value);
 
                 if (!color) return;
-                this.plugin.settings.colorTitleCardEdge = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.settings.colorTitleCardEdgeDark = `${color.r}, ${color.g}, ${color.b}`;
                 this.plugin.saveData(this.plugin.settings)
                 this.plugin.refresh();
             };
         }
     );
+  }
 
-    new Setting(containerEl)
-      .setName("Card Title Background Color in Light Mode")
-      .setDesc("Specify card tittle background color")
+    addSettingCardTitleEdgeColorLight(): void {
+    new Setting(this.containerEl)
+      .setName("Title Card Edge Color")
+      .setDesc("Set title card edge color")
+      .controlEl.createEl(
+        "input",
+        {
+            type: "color",
+            value: rgbToHex(this.plugin.settings.colorTitleCardEdgeLight)
+        },
+        (el) => {
+            el.value = rgbToHex(this.plugin.settings.colorTitleCardEdgeLight);
+            el.oninput = ({ target }) => {
+                let color = hexToRgb((target as HTMLInputElement).value);
+
+                if (!color) return;
+                this.plugin.settings.colorTitleCardEdgeLight = `${color.r}, ${color.g}, ${color.b}`;
+                this.plugin.saveData(this.plugin.settings)
+                this.plugin.refresh();
+            };
+        }
+    );
+  }
+  
+  addSettingCardTitleBackgroundColorLight(): void{
+    new Setting(this.containerEl)
+      .setName("Title Card Background Color")
+      .setDesc("Set title card background color")
       .controlEl.createEl(
         "input",
         {
@@ -227,7 +401,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
             el.value = rgbToHex(this.plugin.settings.colorTitleCardBackGroundLight);
             el.oninput = ({ target }) => {
                 let color = hexToRgb((target as HTMLInputElement).value);
-
+  
                 if (!color) return;
                 this.plugin.settings.colorTitleCardBackGroundLight = `${color.r}, ${color.g}, ${color.b}`;
                 this.plugin.saveData(this.plugin.settings)
@@ -235,11 +409,12 @@ export class CardViewModeSettingTab extends PluginSettingTab {
             };
         }
     );
-
-
-    new Setting(containerEl)
-      .setName("Card Title Background Color in Dark Mode")
-      .setDesc("Specify card tittle background color")
+  }
+  
+  addSettingCardTitleBackgroundColorDark(): void {
+    new Setting(this.containerEl)
+      .setName("Title Card Background Color")
+      .setDesc("Set title card background color")
       .controlEl.createEl(
         "input",
         {
@@ -258,31 +433,32 @@ export class CardViewModeSettingTab extends PluginSettingTab {
             };
         }
     );
+  }
+  
+      // SLIDER setting
+      // new Setting(containerEl)
+      //   .setName('Diff Between Active & NonActive Cards')
+      //   .setDesc('Spcifiy Color difference between active & non active cards. Set 0 to diable "Attention pane"')
+      //   .addSlider(slider => slider
+      //     .setLimits(100, 100, 5)
+      //     .setValue(this.plugin.settings.colorDiffBetweenActive)
+      //     .onChange((value) => {
+      //       this.plugin.settings.colorDiffBetweenActive = value;
+      //       let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
+      //       let activeColorDark = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
+      //       this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - value}, ${activeColorLight.g - value}, ${activeColorLight.b - value}`;
+      //       this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - value}, ${activeColorDark.g - value}, ${activeColorDark.b - value}`;
+      //       this.plugin.saveData(this.plugin.settings);
+      //       this.plugin.refresh();
+      //     })
+      // );
 
-    // SLIDER setting
-    // new Setting(containerEl)
-    //   .setName('Diff Between Active & NonActive Cards')
-    //   .setDesc('Spcifiy Color difference between active & non active cards. Set 0 to diable "Attention pane"')
-    //   .addSlider(slider => slider
-    //     .setLimits(100, 100, 5)
-    //     .setValue(this.plugin.settings.colorDiffBetweenActive)
-    //     .onChange((value) => {
-    //       this.plugin.settings.colorDiffBetweenActive = value;
-    //       let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
-    //       let activeColorDark = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
-    //       this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - value}, ${activeColorLight.g - value}, ${activeColorLight.b - value}`;
-    //       this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - value}, ${activeColorDark.g - value}, ${activeColorDark.b - value}`;
-    //       this.plugin.saveData(this.plugin.settings);
-    //       this.plugin.refresh();
-    //     })
-    // );
-
-    new Setting(containerEl)
+  addSettingDiffBetActiveNonactive(): void {
+    new Setting(this.containerEl)
       .setName('Diff Between Active & NonActive Cards')
-      .setDesc('Spcifiy Color difference between active & non active cards. Set 0 to diable "Attention pane"')
-      .addText(text => text.setPlaceholder('Example: 700')
+      .setDesc('Set Color difference between active & non active cards. Set 0 to diable "Attention pane"')
+      .addText(text => text.setPlaceholder('Default: 0 (Range: -255~255)')
         .setValue((this.plugin.settings.colorDiffBetweenActive || '') + '')
-        .setPlaceholder('defalut: 20')
         .onChange((value) => {
           let nu = Number(value)
           this.plugin.settings.colorDiffBetweenActive = nu;
@@ -294,8 +470,8 @@ export class CardViewModeSettingTab extends PluginSettingTab {
           this.plugin.refresh();
         })
       );
-
   }
+
 }
 
 export class CardViewModeCommands {
@@ -331,7 +507,7 @@ export class CardViewModeCommands {
       }
     });
 
-    this.addToggleSettingCommand('toggle-card-title', 'Toggle Card Title', 'cardTitle');
+    this.addToggleSettingCommand('toggle-card-title', 'Toggle Title Card', 'cardTitle');
   }
 }
 
