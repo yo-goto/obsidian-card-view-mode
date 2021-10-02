@@ -152,7 +152,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Background Color in Light Mode")
-      .setDesc("Specify background color in light mode")
+      .setDesc("Set background color in light mode")
       .controlEl.createEl(
         "input",
         {
@@ -174,7 +174,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     
     new Setting(containerEl)
       .setName("Background Color in Dark Mode")
-      .setDesc("Specify background color in dark mode")
+      .setDesc("Set background color in dark mode")
       .controlEl.createEl(
         "input",
         {
@@ -196,7 +196,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Active Card Color in Light Mode")
-      .setDesc("Specify active card color in light mode")
+      .setDesc("Set active card color in light mode")
       .controlEl.createEl(
         "input",
         {
@@ -219,7 +219,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Active Card Color in Dark Mode")
-      .setDesc("Specify active card color in dark mode")
+      .setDesc("Set active card color in dark mode")
       .controlEl.createEl(
         "input",
         {
@@ -242,7 +242,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Card Title Edge Color")
-      .setDesc("Specify card tittle edge color")
+      .setDesc("Set card title edge color")
       .controlEl.createEl(
         "input",
         {
@@ -264,7 +264,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Card Title Background Color in Light Mode")
-      .setDesc("Specify card tittle background color")
+      .setDesc("Set card title background color")
       .controlEl.createEl(
         "input",
         {
@@ -287,7 +287,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Card Title Background Color in Dark Mode")
-      .setDesc("Specify card tittle background color")
+      .setDesc("Set card title background color")
       .controlEl.createEl(
         "input",
         {
