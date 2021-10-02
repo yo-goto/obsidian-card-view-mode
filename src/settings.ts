@@ -228,7 +228,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingCardBorderColorLight(): void {
     new Setting(this.containerEl)
       .setName("Card Border Color")
-      .setDesc("Set card border color")
       .controlEl.createEl(
         "input",
         {
@@ -252,7 +251,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingCardBorderColorDark(): void {
     new Setting(this.containerEl)
       .setName("Card Border Color")
-      .setDesc("Set card border color")
       .controlEl.createEl(
         "input",
         {
@@ -276,7 +274,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingBackgroundColorLight(): void {
     new Setting(this.containerEl)
       .setName("Background Color")
-      .setDesc("Set background color.")
       .controlEl.createEl(
         "input",
         {
@@ -300,7 +297,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingBackgroundColorDark(): void {
     new Setting(this.containerEl)
       .setName("Background Color")
-      .setDesc("Set background color.")
       .controlEl.createEl(
         "input",
         {
@@ -324,7 +320,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingActiveCardColorLight(): void {
     new Setting(this.containerEl)
       .setName("Active Card Color")
-      .setDesc("Set active card color.")
       .controlEl.createEl(
         "input",
         {
@@ -349,7 +344,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingActiveCardColorDark(): void {
     new Setting(this.containerEl)
       .setName("Active Card Color")
-      .setDesc("Set active card color.")
       .controlEl.createEl(
         "input",
         {
@@ -374,7 +368,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingCardTitleEdgeColorDark(): void {
     new Setting(this.containerEl)
       .setName("Title Card Edge Color")
-      .setDesc("Set title card edge color")
       .controlEl.createEl(
         "input",
         {
@@ -398,7 +391,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     addSettingCardTitleEdgeColorLight(): void {
     new Setting(this.containerEl)
       .setName("Title Card Edge Color")
-      .setDesc("Set title card edge color")
       .controlEl.createEl(
         "input",
         {
@@ -422,7 +414,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingCardTitleBackgroundColorLight(): void{
     new Setting(this.containerEl)
       .setName("Title Card Background Color")
-      .setDesc("Set title card background color")
       .controlEl.createEl(
         "input",
         {
@@ -446,7 +437,6 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   addSettingCardTitleBackgroundColorDark(): void {
     new Setting(this.containerEl)
       .setName("Title Card Background Color")
-      .setDesc("Set title card background color")
       .controlEl.createEl(
         "input",
         {
