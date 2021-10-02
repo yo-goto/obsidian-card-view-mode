@@ -1,5 +1,6 @@
 import { 
   App, 
+  ButtonComponent, 
   Plugin, 
   PluginSettingTab, 
   Setting, 
