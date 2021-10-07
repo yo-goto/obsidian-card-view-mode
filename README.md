@@ -4,13 +4,13 @@
 
 ![main screen shot](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/screenshot_main_light-min.png)
 
-## Feature.1 Card view
+## Feature.1 Card View
 
-This plugin is inspired by [Scrapbox](https://scrapbox.io/product?lang=en) (a web-based wiki tool) & Zettelkasten method(Slipbox) by Niklas Luhmann.
+This plugin is inspired by [Scrapbox](https://scrapbox.io/product?lang=en) (a web-based wiki tool) & Zettelkasten method (Slip box) by Niklas Luhmann.
 
-I found all of the notes are not in the same stage while developing. We need some ways to distinguish the stages. The card view feature is one way to weigh notes and express them.
+I found all of the notes are not in the same stage while developing. We need some ways to distinguish the stages. The card view feature is one way to weigh notes and express them. You can assess whether your notes are **atomic**, then, if you feel your note is longer and not atomic, you can divide or extract the contents.
 
-The vertical size of each note (a.k.a card) can be extended or reduced based on the amount of content on them. At a glance, you can easily find how mature your note is at the early stage of note-making or note-developing.
+The vertical size of each note (a.k.a card) can be extended or reduced based on the amount of content on them. At a glance, you can easily find how mature your note is at the early stage of note-taking, note-making, or eventually **note-developing**.
 
 I highly recommend you to use this plugin with the Sliding Pane plugin. I made this to be compatible with that and the Embedded Note Titles plugin.
 
@@ -23,6 +23,7 @@ Active and non-active cards are rendered with different RGB color values. You ca
 ## Demo
 
 ![Screenshot](https://raw.githubusercontent.com/yo-goto/obsidian-card-view-mode/master/resource/screenshot.gif)
+
 ## Settings
 
 Card colors, background color, card shapes are configurable in the settings tab.
@@ -33,9 +34,10 @@ Card colors, background color, card shapes are configurable in the settings tab.
 
 
 - You can globally turn on/off this plugin with a command at any time.
-- You can custmize card design(colors, corner radius, drop shadow).
+- You can customize the card design(colors, corner radius, drop shadow).
 
 ## Compatibility
+
 - [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian)
 - [Embedded Note Title](https://github.com/mgmeyers/obsidian-embedded-note-titles)
 - [Banners](https://github.com/noatpad/obsidian-banners) (compatibility is not yet stable)
@@ -52,6 +54,7 @@ Card colors, background color, card shapes are configurable in the settings tab.
 - Reload obsidian to see changes
 
 ## Special Thanks
+
 Special thanks to these amazing plugins! I used these plugins as a reference for developing my first public plugin. The plugin basic structure is mainly based on the Sliding Pane. I referred to other plugins to build the color configuration system.
 
 - [Sliding Panes (Andy Matuschak Mode)](https://github.com/deathau/sliding-panes-obsidian) by deathau
@@ -61,4 +64,7 @@ Special thanks to these amazing plugins! I used these plugins as a reference for
 - [Calendar](https://github.com/liamcain/obsidian-calendar-plugin) by liamcain
 
 ## Original CSS
+
+I've developed this plugin from a custom CSS snippet but I changed it into an SCSS file. If you get interested in the CSS style, you can see the original snippet linked below.
+
 [Gist Link](https://gist.github.com/yo-goto/742906c6463310e3f4e18c745dede016)
