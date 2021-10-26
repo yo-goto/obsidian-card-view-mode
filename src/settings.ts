@@ -18,6 +18,8 @@ declare class CardViewModePlugin extends Plugin {
 export interface CardViewModeSettings {
   disabled: boolean;
   cardTitle: boolean;
+  cardSize: number;
+  cardBorderWeight: number;
   cardCornerRadius: number;
   cardTitleCornerRadius: number;
   cardDropShadow: boolean;
@@ -41,6 +43,8 @@ export interface CardViewModeSettings {
 export const DEFAULT_SETTINGS: CardViewModeSettings = {
   disabled: true,
   cardTitle: false,
+  cardSize: 0,
+  cardBorderWeight: 1,
   cardCornerRadius: 10,
   cardTitleCornerRadius: 5,
   cardDropShadow: true,
@@ -86,6 +90,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     this.addSettingToggleDropShadow();
     this.addSettingCardCornerRadius();
     this.addSettingCardTitleCornerRadius();
+    this.addSettingCardBorderWeight();
     
     this.containerEl.createEl("h4", {
       text: "Dark Mode Color",
@@ -220,6 +225,21 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         .onChange((value) => {
           let nu = Number(value)
           this.plugin.settings.cardTitleCornerRadius = nu;
+          this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+        })
+    );    
+  }
+
+    addSettingCardBorderWeight(): void {
+    new Setting(this.containerEl)
+      .setName('Card Border Weight')
+      .setDesc('Set number to adjust title card border weight. Default border weight is 1px.')
+      .addText(text => text.setPlaceholder('Default: 1px')
+        .setValue((this.plugin.settings.cardBorderWeight || '') + '')
+        .onChange((value) => {
+          let nu = Number(value)
+          this.plugin.settings.cardBorderWeight = nu;
           this.plugin.saveData(this.plugin.settings);
           this.plugin.refresh();
         })
@@ -458,23 +478,28 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     );
   }
   
-      // SLIDER setting
-      // new Setting(containerEl)
-      //   .setName('Diff Between Active & NonActive Cards')
-      //   .setDesc('Spcifiy Color difference between active & non active cards. Set 0 to diable "Attention pane"')
-      //   .addSlider(slider => slider
-      //     .setLimits(100, 100, 5)
-      //     .setValue(this.plugin.settings.colorDiffBetweenActive)
-      //     .onChange((value) => {
-      //       this.plugin.settings.colorDiffBetweenActive = value;
-      //       let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
-      //       let activeColorDark = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
-      //       this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - value}, ${activeColorLight.g - value}, ${activeColorLight.b - value}`;
-      //       this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - value}, ${activeColorDark.g - value}, ${activeColorDark.b - value}`;
-      //       this.plugin.saveData(this.plugin.settings);
-      //       this.plugin.refresh();
-      //     })
-      // );
+  // addSettingSliderCardSize(): void {
+  //   // SLIDER setting
+  //   new Setting(this.containerEl)
+  //     .setName('Card size')
+  //     .setDesc('You can change card size with slider.')
+  //     .setTooltip(this.plugin.settings.cardSize)
+  //     .addSlider(slider => slider
+  //       .setLimits(100, 100, 5)
+  //       .setValue(this.plugin.settings.colorDiffBetweenActive)
+  //       .onChange((value) => {
+  //         this.plugin.settings.colorDiffBetweenActive = value;
+  //         let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
+  //         let activeColorDark = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
+  //         this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - value}, ${activeColorLight.g - value}, ${activeColorLight.b - value}`;
+  //         this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - value}, ${activeColorDark.g - value}, ${activeColorDark.b - value}`;
+  //         this.plugin.saveData(this.plugin.settings);
+  //         this.plugin.refresh();
+  //       })
+  //   );
+    
+  // }
+
 
   addSettingDiffBetActiveNonactive(): void {
     new Setting(this.containerEl)

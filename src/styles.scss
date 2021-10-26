@@ -27,12 +27,13 @@
 :root {
     --cardview-side-padding: 0px;
     --cardview-preview-mode-minimum-size: 15px;
-    --cardview-card-boarder-radius: 8px;
+    --cardview-card-border-radius: 8px;
+    --cardview-card-border-weight: 1px;
 
     // disable font matching → changed them to '--default-font'
     --cardview-embedded-title-font-size: 27px;
     --cardview-embedded-title-border-right-width: 6px;
-    --cardview-embedded-title-boarder-radius: 5px;
+    --cardview-embedded-title-border-radius: 5px;
     --cardview-embedded-title-border-padding-top: 0px;
     --cardview-embedded-title-border-padding-bottom: 0px;
 
@@ -44,7 +45,7 @@
     --cardview-border-color: white;
     
     /* for debugging */
-    --cardview-shadow: 0px 10px 50px rgba(0, 0, 0, 0.5);
+    --cardview-shadow-debug: 0px 10px 50px rgba(0, 0, 0, 0.5);
     /* --cardview-debug-color-embedded-note-title-preview: #198415; */
     // --test-color: rgb(123, 230, 1);
 
@@ -88,7 +89,7 @@ body.plugin-card-view-mode {
         /* sepfify how to color padding */
         background-clip: border-box;
         background-color: var(--cardview-background-color-default);
-        border-radius: var(--cardview-card-boarder-radius);
+        border-radius: var(--cardview-card-border-radius);
     
         /* modify space between card and embeded-note-title's header */
         margin-top: 15px !important;
@@ -103,7 +104,7 @@ body.plugin-card-view-mode {
     .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
         padding-right: 20px;
         padding-left: 18px;
-        border: 1px solid var(--cardview-border-color);
+        border: var(--cardview-card-border-weight) solid var(--cardview-border-color);
     }
     
     /* preview mode margin*/
@@ -127,7 +128,7 @@ body.plugin-card-view-mode {
         padding-right: 5px;
         margin-left: 15px;
         margin-right: 26px;
-        border: 1px solid var(--cardview-border-color);
+        border: var(--cardview-card-border-weight) solid var(--cardview-border-color);
     }
     
     /* editor mode margin */
@@ -249,7 +250,7 @@ body.plugin-card-view-mode {
             margin-top: 0px;
 
             img.banner-image {
-                border-radius: var(--cardview-card-boarder-radius) var(--cardview-card-boarder-radius) 0px 0px !important;
+                border-radius: var(--cardview-card-border-radius) var(--cardview-card-border-radius) 0px 0px !important;
             }
         }
     }
@@ -297,7 +298,7 @@ body.plugin-card-view-mode {
 
         .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
         .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-            box-shadow: var(--cardview-shadow);
+            box-shadow: var(--cardview-shadow-debug);
         }
 
         /* active pane card shadow */
@@ -363,8 +364,9 @@ body.plugin-card-view-mode-cardtitle {
     
     
             background: var(--header-color-background);
+            border: 1px solid var(--background-modifier-border);
             border-left: var(--cardview-embedded-title-border-right-width) solid var(--cardview-embedded-title-border-right-color-edit);
-            border-radius: var(--cardview-embedded-title-boarder-radius);
+            border-radius: var(--cardview-embedded-title-border-radius);
         }
     
         // /* preview mode title card */
@@ -386,8 +388,9 @@ body.plugin-card-view-mode-cardtitle {
             padding-right: 0px !important;
     
             background: var(--header-color-background);
+            border: 1px solid var(--background-modifier-border);
             border-left: var(--cardview-embedded-title-border-right-width) solid var(--cardview-embedded-title-border-right-color-preview);
-            border-radius: var(--cardview-embedded-title-boarder-radius);
+            border-radius: var(--cardview-embedded-title-border-radius);
         }
     
         // /* margin around fontmatter box */

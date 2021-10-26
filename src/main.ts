@@ -75,8 +75,9 @@ export default class CardViewModePlugin extends Plugin {
     else {
         el.textContent = `
         body.plugin-card-view-mode {
-          --cardview-card-boarder-radius: ${this.settings.cardCornerRadius}px;
-          --cardview-embedded-title-boarder-radius: ${this.settings.cardTitleCornerRadius}px;
+          --cardview-card-border-radius: ${this.settings.cardCornerRadius}px;
+          --cardview-embedded-title-border-radius: ${this.settings.cardTitleCornerRadius}px;
+          --cardview-card-border-weight: ${this.settings.cardBorderWeight}px;
         }
         body.plugin-card-view-mode.theme-light{
           --cardview-card-color-active: rgb(${this.settings.colorActiveCardLight});
