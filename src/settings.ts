@@ -91,6 +91,7 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     this.addSettingCardCornerRadius();
     this.addSettingCardTitleCornerRadius();
     this.addSettingCardBorderWeight();
+    // this.addSettingSliderCardSize(); // ← testing
     
     this.containerEl.createEl("h4", {
       text: "Dark Mode Color",
@@ -200,49 +201,52 @@ export class CardViewModeSettingTab extends PluginSettingTab {
       )
     );    
   }
-  
+
   addSettingCardCornerRadius(): void {
     new Setting(this.containerEl)
       .setName('Card Corner Radius')
       .setDesc('Set number to adjust card corner radius. Default radius is 10px.')
-      .addText(text => text.setPlaceholder('Default: 10px')
-        .setValue((this.plugin.settings.cardCornerRadius || '') + '')
+      .addSlider(slider => slider
+        .setLimits(0, 20, 1)
+        .setValue(this.plugin.settings.cardCornerRadius)
         .onChange((value) => {
-          let nu = Number(value)
-          this.plugin.settings.cardCornerRadius = nu;
+          this.plugin.settings.cardCornerRadius = value;
           this.plugin.saveData(this.plugin.settings);
           this.plugin.refresh();
         })
-    );
+        .setDynamicTooltip()
+      );
   }
-
+  
   addSettingCardTitleCornerRadius(): void {
     new Setting(this.containerEl)
       .setName('Title Card Corner Radius')
       .setDesc('Set number to adjust title card corner radius. Default radius is 5px.')
-      .addText(text => text.setPlaceholder('Default: 5px')
-        .setValue((this.plugin.settings.cardTitleCornerRadius || '') + '')
+      .addSlider(slider => slider
+        .setLimits(0, 10, 1)
+        .setValue(this.plugin.settings.cardTitleCornerRadius)
         .onChange((value) => {
-          let nu = Number(value)
-          this.plugin.settings.cardTitleCornerRadius = nu;
+          this.plugin.settings.cardTitleCornerRadius = value;
           this.plugin.saveData(this.plugin.settings);
           this.plugin.refresh();
         })
+        .setDynamicTooltip()
     );    
-  }
+  }  
 
-    addSettingCardBorderWeight(): void {
+  addSettingCardBorderWeight(): void {
     new Setting(this.containerEl)
       .setName('Card Border Weight')
       .setDesc('Set number to adjust title card border weight. Default border weight is 1px.')
-      .addText(text => text.setPlaceholder('Default: 1px')
-        .setValue((this.plugin.settings.cardBorderWeight || '') + '')
+      .addSlider(slider => slider
+        .setLimits(0, 10, 1)
+        .setValue(this.plugin.settings.cardBorderWeight)
         .onChange((value) => {
-          let nu = Number(value)
-          this.plugin.settings.cardBorderWeight = nu;
+          this.plugin.settings.cardBorderWeight = value;
           this.plugin.saveData(this.plugin.settings);
           this.plugin.refresh();
         })
+        .setDynamicTooltip()
     );    
   }
 
@@ -483,40 +487,55 @@ export class CardViewModeSettingTab extends PluginSettingTab {
   //   new Setting(this.containerEl)
   //     .setName('Card size')
   //     .setDesc('You can change card size with slider.')
-  //     .setTooltip(this.plugin.settings.cardSize)
   //     .addSlider(slider => slider
-  //       .setLimits(100, 100, 5)
-  //       .setValue(this.plugin.settings.colorDiffBetweenActive)
+  //       .setLimits(0, 50, 5)
+  //       .setValue(this.plugin.settings.cardSize)
   //       .onChange((value) => {
-  //         this.plugin.settings.colorDiffBetweenActive = value;
-  //         let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
+  //         this.plugin.settings.cardSize = value;
+  //         this.plugin.saveData(this.plugin.settings);
+  //         this.plugin.refresh();})
+  //       .setDynamicTooltip()
+  //   );
+  // }
+
+  
+  //  // legacy code
+  // addSettingDiffBetActiveNonactive(): void {
+  //   new Setting(this.containerEl)
+  //     .setName('Diff Between Active & NonActive Cards')
+  //     .setDesc('Set Color difference between active & non active cards. Set this value 0 to diable "Attention pane". Value range: "-255~255".')
+  //     .addText(text => text.setPlaceholder('Default: 0')
+  //       .setValue((this.plugin.settings.colorDiffBetweenActive || '') + '')
+  //       .onChange((value) => {
+  //         let nu = Number(value)
+  //         this.plugin.settings.colorDiffBetweenActive = nu;
+  //         let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardLight));
   //         let activeColorDark = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
-  //         this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - value}, ${activeColorLight.g - value}, ${activeColorLight.b - value}`;
-  //         this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - value}, ${activeColorDark.g - value}, ${activeColorDark.b - value}`;
+  //         this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - nu}, ${activeColorLight.g - nu}, ${activeColorLight.b - nu}`;
+  //         this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - nu}, ${activeColorDark.g - nu}, ${activeColorDark.b - nu}`;
   //         this.plugin.saveData(this.plugin.settings);
   //         this.plugin.refresh();
   //       })
-  //   );
-    
+  //     );
   // }
-
 
   addSettingDiffBetActiveNonactive(): void {
     new Setting(this.containerEl)
       .setName('Diff Between Active & NonActive Cards')
       .setDesc('Set Color difference between active & non active cards. Set this value 0 to diable "Attention pane". Value range: "-255~255".')
-      .addText(text => text.setPlaceholder('Default: 0')
-        .setValue((this.plugin.settings.colorDiffBetweenActive || '') + '')
+      .addSlider(slider => slider
+        .setLimits(-255, 255, 1)
+        .setValue(this.plugin.settings.colorDiffBetweenActive)
         .onChange((value) => {
-          let nu = Number(value)
-          this.plugin.settings.colorDiffBetweenActive = nu;
+          this.plugin.settings.colorDiffBetweenActive = value;
           let activeColorLight = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardLight));
           let activeColorDark = hexToRgb(rgbToHex(this.plugin.settings.colorActiveCardDark));
-          this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - nu}, ${activeColorLight.g - nu}, ${activeColorLight.b - nu}`;
-          this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - nu}, ${activeColorDark.g - nu}, ${activeColorDark.b - nu}`;
+          this.plugin.settings.colorNonActiveCardLight = `${activeColorLight.r - value}, ${activeColorLight.g - value}, ${activeColorLight.b - value}`;
+          this.plugin.settings.colorNonActiveCardDark = `${activeColorDark.r - value}, ${activeColorDark.g - value}, ${activeColorDark.b - value}`;
           this.plugin.saveData(this.plugin.settings);
           this.plugin.refresh();
         })
+        .setDynamicTooltip()
       );
   }
 

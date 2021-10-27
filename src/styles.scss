@@ -18,6 +18,9 @@
 - fixed banner style
 ## v0.4.9
 - added several option items(drop shadow, title edge color in the both mode)
+## v0.5.0
+- added card border weight option
+- changed some option items to slider
 */
 
 
@@ -29,6 +32,11 @@
     --cardview-preview-mode-minimum-size: 15px;
     --cardview-card-border-radius: 8px;
     --cardview-card-border-weight: 1px;
+    --cardview-card-border-color: white;
+    --cardview-labelheading-text-color: rgb(217, 118, 47);
+
+    // for prepare
+    // --cardview-card-color-type-moc: red;
 
     // disable font matching → changed them to '--default-font'
     --cardview-embedded-title-font-size: 27px;
@@ -42,7 +50,6 @@
     --cardview-embedded-title-border-right-color-edit: red;
     --cardview-embedded-title-border-right-color-preview: green;
     --cardview-debug-color-embedded-note-title-edit: red;
-    --cardview-border-color: white;
     
     /* for debugging */
     --cardview-shadow-debug: 0px 10px 50px rgba(0, 0, 0, 0.5);
@@ -100,22 +107,19 @@ body.plugin-card-view-mode {
     /* ----------------------------------------------  */
     /* preview mode                                    */
     /* ----------------------------------------------  */
-    /* preview mode modificaition */
-    .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-        padding-right: 20px;
-        padding-left: 18px;
-        border: var(--cardview-card-border-weight) solid var(--cardview-border-color);
-    }
-    
-    /* preview mode margin*/
     .markdown-preview-view {
+        /* preview mode margin*/
         padding-right: calc(var(--cardview-side-padding) + 26px);
         padding-left: calc(var(--cardview-side-padding) + 15px);
-    }
-    
-    /* for metadata */
-    .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-        padding-top: 15px;
+
+        .markdown-preview-sizer.markdown-preview-section {
+            /* preview mode modificaition */
+            padding-right: 20px;
+            padding-left: 18px;
+            /* for metadata */
+            padding-top: 15px;
+            border: var(--cardview-card-border-weight) solid var(--cardview-card-border-color);
+        }
     }
     
     
@@ -128,7 +132,7 @@ body.plugin-card-view-mode {
         padding-right: 5px;
         margin-left: 15px;
         margin-right: 26px;
-        border: var(--cardview-card-border-weight) solid var(--cardview-border-color);
+        border: var(--cardview-card-border-weight) solid var(--cardview-card-border-color);
     }
     
     /* editor mode margin */
@@ -139,7 +143,7 @@ body.plugin-card-view-mode {
     
         
     /* ----------------------------------------------  */
-    /* attention-pane                                  */
+    /* attention-pane   background color anagement      /
     /* ----------------------------------------------  */
     /* change color of active pane */
     /* background color of active pane */
@@ -152,19 +156,62 @@ body.plugin-card-view-mode {
     .workspace-split:not(.mod-right-split) .workspace-leaf:not(.mod-active) .workspace-leaf-content .view-content {
         background-color: var(--cardview-background-color-default);
     }
-    
-    /* active pane card color and shadow */
-    .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
-    .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-        background-color: var(--cardview-card-color-active);
+
+
+    /* ----------------------------------------------  */
+    /* attention-pane   card-color         */
+    /* ----------------------------------------------  */
+    $SUFFIX_TYPES: 
+        "moc", 
+        "permanent", 
+        "literature", 
+        "production", 
+        ''; 
+
+    @mixin colma($activate) {
+        .view-content {
+            .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"] {
+                background-color: var(--cardview-card-color-#{$activate});
+            }
+
+            .markdown-preview-view {
+                .markdown-preview-sizer.markdown-preview-section {
+                    background-color: var(--cardview-card-color-#{$activate});
+                }
+            }
+
+            // @each $type, $color in $SUFFIX_TYPES {
+            //     .markdown-preview-view.type-#{$type} {
+            //         .markdown-preview-sizer.markdown-preview-section {
+            //             background-color: var(--cardview-card-color-active);
+            //         }
+            //     }
+            // }
+        }
     }
-    
-    /* non-active pane card color and shadow */
-    .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
-    .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
-        background-color: var(--cardview-card-color-non-active);
+
+    .workspace-leaf {
+        &.mod-active {
+            @include colma('active');
+        }
+        &:not(.mod-active) {
+            @include colma('non-active');
+        }
     }
-    
+
+    // // legacy code
+    // /* active pane card color and shadow */
+    // .workspace-leaf.mod-active .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    // .workspace-leaf.mod-active .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+    //     background-color: var(--cardview-card-color-active);
+    // }
+
+    // /* non-active pane card color and shadow */
+    // .workspace-leaf:not(.mod-active) .view-content .CodeMirror-sizer .CodeMirror-lines>div[role="presentation"],
+    // .workspace-leaf:not(.mod-active) .view-content .markdown-preview-view .markdown-preview-sizer.markdown-preview-section {
+    //     background-color: var(--cardview-card-color-non-active);
+    // }
+
     
     /* ----------------------------------------------  */
     /* embeded note modification                       */
@@ -315,6 +362,31 @@ body.plugin-card-view-mode {
     }
 }
 
+/* ----------------------------------------------  */
+/* label headerings      not yet ready             */
+/* ----------------------------------------------  */
+body.plugin-card-view-mode-labelheading {
+
+    /* ----------------------------------------------  */
+    /* editor mode                                     */
+    /* ----------------------------------------------  */
+    .cm-header {
+        color: var(--text-header-color) !important;
+    }
+    .cm-header.cm-header-1 {
+        background: var(--header-color-background);
+        padding-right: 10px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        margin-left: 0px;
+    }
+    .cm-formatting.cm-formatting-header.cm-formatting-header-1 {
+        border-left: 5px solid var(--header-color-border-h1);
+        padding-left: 5px;
+        border-radius: 3px;
+    }
+    
+}
 
 body.plugin-card-view-mode-cardtitle {
 

@@ -84,7 +84,7 @@ export default class CardViewModePlugin extends Plugin {
           --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardLight});
           --cardview-background-color-default: rgb(${this.settings.colorBackGroundLight});
           --header-color-background: rgb(${this.settings.colorTitleCardBackGroundLight});
-          --cardview-border-color: rgb(${this.settings.colorCardBorderLight});
+          --cardview-card-border-color: rgb(${this.settings.colorCardBorderLight});
           --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCardEdgeLight});
           --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCardEdgeLight});
         }
@@ -93,7 +93,7 @@ export default class CardViewModePlugin extends Plugin {
           --cardview-card-color-non-active: rgb(${this.settings.colorNonActiveCardDark});
           --cardview-background-color-default: rgb(${this.settings.colorBackGroundDark});
           --header-color-background: rgb(${this.settings.colorTitleCardBackGroundDark});
-          --cardview-border-color: rgb(${this.settings.colorCardBorderDark});
+          --cardview-card-border-color: rgb(${this.settings.colorCardBorderDark});
           --cardview-embedded-title-border-right-color-edit: rgb(${this.settings.colorTitleCardEdgeDark});
           --cardview-embedded-title-border-right-color-preview: rgb(${this.settings.colorTitleCardEdgeDark});
         }
