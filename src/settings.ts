@@ -206,6 +206,18 @@ export class CardViewModeSettingTab extends PluginSettingTab {
     new Setting(this.containerEl)
       .setName('Card Corner Radius')
       .setDesc('Set number to adjust card corner radius. Default radius is 10px.')
+      .addExtraButton(button => button
+        .setIcon('reset')
+        .setTooltip('restore default')
+        .onClick(async() => {
+          this.plugin.settings.cardCornerRadius = DEFAULT_SETTINGS.cardCornerRadius;
+          await this.plugin.saveData(this.plugin.settings);
+          this.plugin.refresh();
+          // console.log(this.plugin.settings) // → 
+          console.log(DEFAULT_SETTINGS); // → chaged value outputted
+          // console.log(DEFAULT_SETTINGS.cardCornerRadius);
+        })
+      )
       .addSlider(slider => slider
         .setLimits(0, 20, 1)
         .setValue(this.plugin.settings.cardCornerRadius)
@@ -217,7 +229,8 @@ export class CardViewModeSettingTab extends PluginSettingTab {
         .setDynamicTooltip()
       );
   }
-  
+
+
   addSettingCardTitleCornerRadius(): void {
     new Setting(this.containerEl)
       .setName('Title Card Corner Radius')
